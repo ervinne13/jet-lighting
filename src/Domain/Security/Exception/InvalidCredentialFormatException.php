@@ -17,14 +17,14 @@ class InvalidCredentialFormatException extends Exception
 
     public static function fromInvalidUsernameFormat(string $username, Throwable $previous = null) : InvalidCredentialFormatException
     {
-        $msg = "The username {$username} has invalid format.";
+        $msg = "The username {$username} must be longer than 8 characters.";
         $code = static::INVALID_USERNAME;
         return new static($msg, $code, $previous);
     }
 
     public static function fromInvalidPasswordFormat(Throwable $previous = null) : InvalidCredentialFormatException
     {
-        $msg = 'Password format is invalid.';
+        $msg = 'Password must be longer than 8 characters.';
         $code = static::INVALID_PASSWORD;
         return new static($msg, $code, $previous);
     }

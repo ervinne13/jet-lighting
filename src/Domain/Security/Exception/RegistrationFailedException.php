@@ -3,6 +3,7 @@
 namespace Jet\Domain\Security\Exception;
 
 use Exception;
+use Jet\Domain\Security\ValueObject\Username;
 
 class RegistrationFailedException extends Exception
 {

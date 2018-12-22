@@ -5,10 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Jet\Domain\Security\Exception\InvalidCredentialFormatException;
 use Jet\Domain\Security\Exception\RegistrationFailedException;
-use Jet\Domain\Security\Registration;
-use Jet\Domain\Security\ValueObject\Credentials;
-use Jet\Domain\Security\ValueObject\MatchingPasswords;
-use Jet\Domain\Security\ValueObject\Username;
+use Jet\Domain\Security\Service\Builder\RegistrationBuilder;
 
 class CreateAdmin extends Command
 {
@@ -44,21 +41,14 @@ class CreateAdmin extends Command
     public function handle()
     {
         try {
-            $displayName    = $this->ask('Display name');
+            $builder = new RegistrationBuilder();
+            $builder->withDisplayName($this->ask('Display name'));
+            $builder->withUsername($this->ask('Username'));
+            $builder->withPassword($this->secret('Password'));
+            $builder->withRepeatPassword($this->secret('Password (Type Again)'));           
 
-            $username       = $this->ask('Username');
-            $validUsername  = new Username($username);
-
-            $password       = $this->secret('Password');
-            $passwordRepeat = $this->secret('Password (Type Again)');
-            $matchedPassword = (new MatchingPasswords($password, $passwordRepeat))->valildateAndGet();
-
-            $registration = new Registration(
-                new Credentials($validUsername, $matchedPassword), 
-                $displayName
-            );
-
-            $registration->execute();
+            $registration = $builder->build();
+            $registration->execute();        
         } catch(InvalidCredentialFormatException $e) {
             $this->error($e->getMessage());
         } catch(RegistrationFailedException $e) {

@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Jet\Domain\Security\Registration;
+use Jet\Domain\Security\Service\Builder\RegistrationBuilder;
 use Jet\Domain\Security\ValueObject\Credentials;
 use Jet\Domain\Security\ValueObject\MatchingPasswords;
 use Jet\Domain\Security\ValueObject\Username;
@@ -17,13 +17,14 @@ class ExampleTest extends TestCase
      * @test
      */
     public function it_can_register_users_with_valid_properties()
-    {    
-        $matchedPassword = (new MatchingPasswords('Secret!23', 'Secret!23'))->valildateAndGet();
-        $validUsername = new Username('administrator');
-        $registration = new Registration(
-            new Credentials($validUsername, $matchedPassword), 
-            'Administrator Administrator'
-        );
+    {
+        $builder = new RegistrationBuilder();
+        $registration = $builder
+                ->withDisplayName('Ervinne Sodusta')
+                ->withUsername('administrator')
+                ->withPassword('Secret!23')
+                ->withRepeatPassword('Secret!23')
+                ->build();
 
         $registration->execute();
 
