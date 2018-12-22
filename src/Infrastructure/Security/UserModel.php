@@ -1,16 +1,17 @@
 <?php
 
-namespace App;
+namespace Jet\Infrastructure\Security;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class UserModel extends Authenticatable
 {
     use Notifiable;
 
-    public $incrementing = false;
-    protected $primaryKey = 'username';
+    public $incrementing    = false;
+    protected $table        = 'users';
+    protected $primaryKey   = 'username';
 
     /**
      * The attributes that should be hidden for arrays.

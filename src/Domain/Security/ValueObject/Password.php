@@ -2,6 +2,8 @@
 
 namespace Jet\Domain\Security\ValueObject;
 
+use Exception;
+use Illuminate\Support\Facades\Hash;
 use Jet\Domain\Common\ValueObject\TextLengthInvariant;
 use Jet\Domain\Security\Exception\InvalidCredentialFormatException;
 
@@ -17,7 +19,7 @@ class Password extends TextLengthInvariant
 {
     public function getHashed() : string
     {
-        
+        return Hash::make($this->getStringValue());
     }
 
     protected function getRequiredTextLength() : int

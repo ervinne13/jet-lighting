@@ -2,8 +2,9 @@
 
 namespace Jet\Domain\Security\ValueObject;
 
+use Exception;
 use Jet\Domain\Common\ValueObject\TextLengthInvariant;
-use Jet\Domain\Security\Exception\InvalidPasswordException;
+use Jet\Domain\Security\Exception\InvalidCredentialFormatException;
 
 /**
  * Invariant for usernames.
