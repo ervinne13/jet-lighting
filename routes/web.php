@@ -10,5 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('logout', 'Auth\LoginController@logout');
+Auth::routes();
 
-Route::get('/', 'DashboardController@index')->name("dashboard");
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/', 'DashboardController@index')->name("dashboard");
+});
