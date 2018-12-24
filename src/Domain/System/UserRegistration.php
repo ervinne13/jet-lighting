@@ -12,6 +12,8 @@ use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 
 /**
+ * TODO: Move doctrine implementations to the infrastructure.
+ * 
  * @ORM\Entity
  * @ORM\Table(name="users")
  */
