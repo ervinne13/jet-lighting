@@ -16,7 +16,7 @@ class DefaultAdminSeeder extends Seeder
         $builder->withDisplayName('Administrator');
         $builder->withUsername('administrator');
         $builder->withPassword(')GUEo5875IJ("^X');
-        $builder->withRepeatPassword(')GUEo5875IJ("^X');           
+        $builder->withRepeatPassword(')GUEo5875IJ("^X');
 
         $registration = $builder->build();
         $registration->execute();
