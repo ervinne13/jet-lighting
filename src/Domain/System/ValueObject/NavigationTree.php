@@ -10,12 +10,23 @@ use Jet\Domain\System\ValueObject\NavigationNodesParent;
 class NavigationTree implements NavigationNodesParent
 {
     /** @var array */
-    protected $children;
+    protected $children;   
 
     public function __construct(array $nodes = [])
     {
         $this->children = [];
         $this->addChildren($nodes);
+    }
+
+    public function isRouteMatchingDeeply(string $route): bool
+    {
+        foreach($this->children as $node) {
+            if ($node->isRouteMatchingDeeply($route)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function addChild(NavigationNode $node)

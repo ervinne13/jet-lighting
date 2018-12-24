@@ -40,7 +40,22 @@ class NavigationNode extends NavigationTree implements NavigationNodesParent
 
         $this->children = [];
         $this->isVisible = true;
-    }    
+    }
+
+    public function isRouteMatchingDeeply(string $route): bool
+    {
+        if ($this->route == $route) {
+            return true;
+        }
+
+        foreach($this->children as $node) {
+            if ($node->isRouteMatchingDeeply($route)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
     
     public function isMerelyAContainer() : bool
     {

@@ -4,6 +4,7 @@ namespace App\Http\View\Composers;
 
 use Illuminate\View\View;
 use Jet\Domain\System\Service\ModuleRepository;
+use Jet\Domain\System\ValueObject\NavigationTree;
 
 class NavigationComposer
 {
@@ -11,9 +12,13 @@ class NavigationComposer
     /** @var ModuleRepository */
     private $moduleRepository;
 
-    public function __construct(ModuleRepository $moduleRepository)
+    /** @var NavigationTree */
+    private $navTree;
+
+    public function __construct(ModuleRepository $moduleRepository, NavigationTree $navTree)
     {
         $this->moduleRepository = $moduleRepository;
+        $this->navTree = $navTree;
     }
 
     /**
@@ -29,7 +34,7 @@ class NavigationComposer
         $view->with('userPosition', 'System Admin');
         $view->with('navigation', 'all');
 
-        $view->with('modules', $moduleRepository->getAllActive());
+        $view->with('navigationTree', $this->navTree);
 
     }
 }
