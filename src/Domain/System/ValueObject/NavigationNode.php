@@ -47,7 +47,7 @@ class NavigationNode extends NavigationTree implements NavigationNodesParent
         return $this->route === null && $this->getChildCount() > 0;
     }
 
-    public function getModuleCode() : string
+    public function getModuleCode() : ?string
     {
         return $this->moduleCode;
     }

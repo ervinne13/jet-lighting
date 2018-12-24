@@ -17,7 +17,7 @@ class NavigationTreeNodeRemoverUsingMissingModuleImpl implements NavigationTreeN
     private $resultingTree;
 
     /** @var array[string] */
-    private $factor;
+    private $passingCriteria;
 
     public function __construct()
     {
@@ -31,10 +31,10 @@ class NavigationTreeNodeRemoverUsingMissingModuleImpl implements NavigationTreeN
         return $this;
     }
 
-    public function using($factor) : NavigationTreeNodeRemover
+    public function using($passingCriteria) : NavigationTreeNodeRemover
     {    
-        foreach($factor as $module) {
-            $this->factor[] = $this->getModuleCode($module);
+        foreach($passingCriteria as $module) {
+            $this->passingCriteria[] = $this->getModuleCode($module);
         }
         
         return $this;
@@ -61,21 +61,17 @@ class NavigationTreeNodeRemoverUsingMissingModuleImpl implements NavigationTreeN
         foreach($nodeParent->getChildren() as $node) {
             $visibleChildNodes = $this->recursivelyAddVisibleNodesUsing($node);
 
-            //  do not bother with empty nodes
-            if ($node->isMerelyAContainer() && count($visibleChildNodes) <= 0) {
+            if (!$this->passesFactor($node, $visibleChildNodes)) {
                 continue;
-            }
-
-            $passingNode = null;
+            }           
+            
             if ($node->isMerelyAContainer()) {
                 $passingNode = $this->makeContainerOnlyNode($node, $visibleChildNodes);
-            } else if ($this->passesFactor($node)) {
-                $passingNode = $this->makeModuleBoundNode($node, $visibleChildNodes);
+            } else {
+                $passingNode = $this->makeNode($node, $visibleChildNodes);
             }
             
-            if ($passingNode) {
-                $visibleNodes[] = $passingNode;
-            }            
+            $visibleNodes[] = $passingNode;         
         }
 
         return $visibleNodes;
@@ -93,13 +89,14 @@ class NavigationTreeNodeRemoverUsingMissingModuleImpl implements NavigationTreeN
         return $node;
     }
 
-    private function makeModuleBoundNode(NavigationNode $originalNode, array $children) : NavigationNode
+    private function makeNode(NavigationNode $originalNode, array $children) : NavigationNode
     {
+        $moduleCode = $originalNode->getModuleCode() ? new ModuleCode($originalNode->getModuleCode()) : null;
         $node = new NavigationNode(
             $originalNode->getIconClass(),
             $originalNode->getText(),            
             $originalNode->getRoute(),
-            new ModuleCode($originalNode->getModuleCode())
+            $moduleCode
         );
 
         $node->addChildren($children);
@@ -107,9 +104,13 @@ class NavigationTreeNodeRemoverUsingMissingModuleImpl implements NavigationTreeN
         return $node;
     }
 
-    private function passesFactor(NavigationNode $node)
+    private function passesFactor(NavigationNode $node, $visibleChildNodes)
     {
-        return in_array($node->getModuleCode(), $this->factor);
+        $linkOnlyNode = null === $node->getModuleCode() && $node->getRoute();
+        $matchesAModule = in_array($node->getModuleCode(), $this->passingCriteria);
+        $nonEmptyContainer = $node->isMerelyAContainer() && count($visibleChildNodes) > 0;
+
+        return $linkOnlyNode || $matchesAModule || $nonEmptyContainer;
     }
     
 }

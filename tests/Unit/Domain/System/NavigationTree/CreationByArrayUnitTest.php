@@ -6,6 +6,7 @@ use Jet\Domain\System\ValueObject\NavigationNode;
 use Jet\Infrastructure\System\Service\NavigationTreeBuilderArrayImpl;
 use PHPUnit\Framework\TestCase;
 use Tests\Unit\Domain\System\NavigationTree\Stub\FileSource\FlatSourceStub;
+use Tests\Unit\Domain\System\NavigationTree\Stub\FileSource\HasNonModuleBoundFlatSourceStub;
 use Tests\Unit\Domain\System\NavigationTree\Stub\FileSource\NestedSourceStub;
 
 class CreationByArrayUnitTest extends TestCase
@@ -32,6 +33,17 @@ class CreationByArrayUnitTest extends TestCase
         $this->assertIteratableHasNavigationNodes($navigationTree->getChildren());
     }
     
+    /**
+     * @test
+     */
+    public function it_can_create_a_flat_tree_with_non_module_bound_nodes()
+    {
+        $source = HasNonModuleBoundFlatSourceStub::get();
+        $navigationTree = $this->builder->createFrom($source);
+
+        $this->assertIteratableHasNavigationNodes($navigationTree->getChildren());
+    }
+
     /**
      * @test
      */

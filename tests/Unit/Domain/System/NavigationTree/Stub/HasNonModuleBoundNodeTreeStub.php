@@ -14,15 +14,15 @@ class HasNonModuleBoundNodeTreeStub
 
         $navTree->addChildren([
             new NavigationNode(
-                'fa fa-users',
-                'User Management',                
-                'users',
-                new ModuleCode('U')
+                'fa fa-dashboard',
+                'Dashboard',                
+                'dashboard'                
             ),
             new NavigationNode(
-                'fa fa-file-alt',
-                'Tracking Number',                
-                'tracking-numbers'
+                'fa fa-users',
+                'User Management',
+                'users',
+                new ModuleCode('U')
             ),
             new NavigationNode(
                 'fa fa-file-alt',

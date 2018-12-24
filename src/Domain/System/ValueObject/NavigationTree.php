@@ -14,6 +14,7 @@ class NavigationTree implements NavigationNodesParent
 
     public function __construct(array $nodes = [])
     {
+        $this->children = [];
         $this->addChildren($nodes);
     }
 

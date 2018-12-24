@@ -6,8 +6,10 @@ use Jet\Domain\System\Entity\Module;
 use Jet\Domain\System\Service\NavigationTreeNodeRemover;
 use Jet\Domain\System\Service\NavigationTreeNodeRemoverUsingMissingModuleImpl;
 use Jet\Domain\System\ValueObject\ModuleCode;
+use Jet\Domain\System\ValueObject\NavigationTree;
 use Tests\TestCase;
 use Tests\Unit\Domain\System\NavigationTree\Stub\FlatTreeStub;
+use Tests\Unit\Domain\System\NavigationTree\Stub\HasNonModuleBoundNodeTreeStub;
 use Tests\Unit\Domain\System\NavigationTree\Stub\NestedTreeStub;
 
 class NodeVisibilityByModuleUnitTest extends TestCase
@@ -89,7 +91,29 @@ class NodeVisibilityByModuleUnitTest extends TestCase
         
         $this->assertEquals(1, count($modifiedTree->getChildren()));
         $this->assertEquals('U', $modifiedTree->getChildren()[0]->getModuleCode());
+    }
 
+    /**
+     * @test
+     */
+    public function it_always_includes_non_module_bound_nodes()
+    {
+        $originalTree = HasNonModuleBoundNodeTreeStub::get();        
+        $modules = [
+            new Module(new ModuleCode('U'), 'Users')
+        ];
+
+        $this->createModifiedTreeAndAssertNonModuleBoundNodeExists($originalTree, $modules);
+    }
+
+    private function createModifiedTreeAndAssertNonModuleBoundNodeExists(NavigationTree $originalTree, array $modules)
+    {
+        $modifiedTree = $this->nodeRemover
+            ->removeFrom($originalTree)
+            ->using($modules)
+            ->getResultingTree();
+    
+        $this->assertEquals('dashboard', $modifiedTree->getChildren()[0]->getRoute());
     }
 
 }
