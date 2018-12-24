@@ -17,10 +17,10 @@ class Location
     /** @var LocationModel */
     private $model;
 
-    public function __construct(string $displayName, int $id = null)
+    public function __construct(string $name, int $id = null)
     {
         $this->model = new LocationModel();
-        $this->model->display_name = $displayName;
+        $this->model->display_name = $name;
 
         if ($id) {
             $this->model->id = $id;

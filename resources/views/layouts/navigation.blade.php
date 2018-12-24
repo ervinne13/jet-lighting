@@ -6,8 +6,8 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear">
                             <span class="block m-t-xs">
-                                <strong class="font-bold">{{ $displayName }}</strong>
-                            </span> <span class="text-muted text-xs block">{{ $displayPosition }} <b class="caret"></b></span>
+                                <strong class="font-bold">{{ $userName }}</strong>
+                            </span> <span class="text-muted text-xs block">{{ $userPosition }} <b class="caret"></b></span>
                         </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">

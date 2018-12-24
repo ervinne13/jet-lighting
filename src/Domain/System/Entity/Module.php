@@ -12,15 +12,14 @@ use LaravelDoctrine\ORM\Auth\Authenticatable as DoctrineAuthenticatable;
  * @ORM\Entity
  * @ORM\Table(name="users")
  */
-class User implements LaravelAuthenticatable
-{
-    use DoctrineAuthenticatable;
+class Module
+{    
 
     /**
      * @ORM\Id
      * @ORM\Column(type="string")
      */
-    private $username;
+    private $code;
 
     /**
      * @ORM\Column(type="string")
@@ -53,7 +52,7 @@ class User implements LaravelAuthenticatable
 
     function getName() : string
     {
-        return $this->name;
+        return $this->displayName;
     }
 
     /**

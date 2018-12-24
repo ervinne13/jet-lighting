@@ -10,13 +10,13 @@ use Jet\Domain\System\ValueObject\Username;
 
 class RegistrationBuilder
 {
-    private $displayName;
+    private $name;
     private $username;
     private $password;
 
-    public function withDisplayName(string $displayName)
+    public function withDisplayName(string $name)
     {
-        $this->displayName = $displayName;
+        $this->displayName = $name;
         return $this;
     }
 

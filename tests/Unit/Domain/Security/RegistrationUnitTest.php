@@ -58,7 +58,7 @@ class RegistrationTest extends TestCase
         $user = $this->repository->findByUsername(new Username('ervinne13'));
         $this->assertInstanceOf(User::class, $user);
         $this->assertEquals('ervinne13', $user->getUsername());
-        $this->assertEquals('Ervinne Sodusta', $user->getDisplayName());
+        $this->assertEquals('Ervinne Sodusta', $user->getName());
     }
 
     /**

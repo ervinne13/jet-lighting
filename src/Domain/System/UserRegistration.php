@@ -31,9 +31,9 @@ class UserRegistration
     private $password;
 
     /**
-     * @ORM\Column(type="string", name="display_name")     
+     * @ORM\Column(type="string")     
      */
-    private $displayName;
+    private $name;
 
     /**
      * @var boolean
@@ -45,11 +45,11 @@ class UserRegistration
      */
     private $repository;
 
-    public function __construct(Credentials $credentials, string $displayName)
+    public function __construct(Credentials $credentials, string $name)
     {
         $this->username = $credentials->getUsername()->getStringValue();
         $this->password = $credentials->getPassword()->getHashed();        
-        $this->displayName = $displayName;
+        $this->name = $name;
     }
 
     /**

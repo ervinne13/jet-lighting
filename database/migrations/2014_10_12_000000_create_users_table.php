@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {            
             $table->string('username', 100)->primary();
-            $table->string('display_name', 100);            
+            $table->string('name', 100);            
             $table->string('password', 120);
             $table->boolean('requires_change_password')->default(false);
             $table->rememberToken();
