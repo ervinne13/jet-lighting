@@ -25,9 +25,9 @@ class NavigationNode extends NavigationTree implements NavigationNodesParent
 
     public function __construct(                 
         string $iconClass, 
-        string $text,
-        ModuleCode $moduleCode = null,
-        string $route = null
+        string $text,        
+        string $route = null,
+        ModuleCode $moduleCode = null
     ) {        
         $this->iconClass = $iconClass;
         $this->text = $text;

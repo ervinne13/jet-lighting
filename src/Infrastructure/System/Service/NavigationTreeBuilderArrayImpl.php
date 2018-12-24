@@ -24,9 +24,9 @@ class NavigationTreeBuilderArrayImpl implements NavigationTreeBuilder
     {        
         $node = new NavigationNode(            
             $source['icon_class'],
-            $source['text'],
-            $this->getModuleCodeFromSource($source),
-            data_get($source, 'route', null)
+            $source['text'],            
+            data_get($source, 'route', null),
+            $this->getModuleCodeFromSource($source)
         );
 
         $children = data_get($source, 'children', []);

@@ -61,6 +61,7 @@ class NavigationTreeNodeRemoverUsingMissingModuleImpl implements NavigationTreeN
         foreach($nodeParent->getChildren() as $node) {
             $visibleChildNodes = $this->recursivelyAddVisibleNodesUsing($node);
 
+            //  do not bother with empty nodes
             if ($node->isMerelyAContainer() && count($visibleChildNodes) <= 0) {
                 continue;
             }
@@ -96,9 +97,9 @@ class NavigationTreeNodeRemoverUsingMissingModuleImpl implements NavigationTreeN
     {
         $node = new NavigationNode(
             $originalNode->getIconClass(),
-            $originalNode->getText(),
-            new ModuleCode($originalNode->getModuleCode()),
-            $originalNode->getRoute()
+            $originalNode->getText(),            
+            $originalNode->getRoute(),
+            new ModuleCode($originalNode->getModuleCode())
         );
 
         $node->addChildren($children);

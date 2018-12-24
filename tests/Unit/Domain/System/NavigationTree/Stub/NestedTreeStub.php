@@ -16,8 +16,8 @@ class NestedTreeStub
             new NavigationNode(
                 'fa fa-users',
                 'User Management',
-                new ModuleCode('U'),
-                'users'
+                'users',
+                new ModuleCode('U')
             ),
             static::makeNodeWithChildren()
         ]);
@@ -35,15 +35,15 @@ class NestedTreeStub
         $parentNode->addChildren([
             new NavigationNode(
                 'fa fa-file',
-                'Child Module 1',
-                new ModuleCode('CH1'),
-                'child-module-1'
+                'Child Module 1',                
+                'child-module-1',
+                new ModuleCode('CH1')
             ),
             new NavigationNode(
                 'fa fa-file',
                 'Child Module 2',
-                new ModuleCode('CH2'),
-                'child-module-2'
+                'child-module-2',
+                new ModuleCode('CH2')
             ),
         ]);
 

@@ -6,7 +6,7 @@ use Jet\Domain\System\ValueObject\ModuleCode;
 use Jet\Domain\System\ValueObject\NavigationNode;
 use Jet\Domain\System\ValueObject\NavigationTree;
 
-class FlatTreeStub
+class HasNonModuleBoundNodeTreeStub
 {
     public static function get() : NavigationTree
     {
@@ -21,7 +21,12 @@ class FlatTreeStub
             ),
             new NavigationNode(
                 'fa fa-file-alt',
-                'Tracking Number',
+                'Tracking Number',                
+                'tracking-numbers'
+            ),
+            new NavigationNode(
+                'fa fa-file-alt',
+                'Tracking Number',                
                 'tracking-numbers',
                 new ModuleCode('TN')
             ),
