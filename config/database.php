@@ -33,11 +33,31 @@ return [
 
     'connections' => [
 
+        // 'testing' => [
+        //     'driver' => 'sqlite',
+        //     'database' => ':memory:',
+        //     'prefix' => '',
+        //     'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        // ],        
+
+        /**
+         * We'll use mysql connection for testing for now as doctrine doesn't go
+         * well with in memory testing
+         */
         'testing' => [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => 'jet_lighting_testing',
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
-            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
         ],
 
         'sqlite' => [
