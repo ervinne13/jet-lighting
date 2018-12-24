@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Jet\Domain\Security\Exception\InvalidCredentialFormatException;
-use Jet\Domain\Security\Exception\RegistrationFailedException;
-use Jet\Domain\Security\Service\Builder\RegistrationBuilder;
+use Jet\Domain\System\Exception\InvalidCredentialFormatException;
+use Jet\Domain\System\Exception\RegistrationFailedException;
+use Jet\Domain\System\Service\Builder\RegistrationBuilder;
 
 class CreateAdmin extends Command
 {

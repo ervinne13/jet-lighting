@@ -66,8 +66,8 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'eloquent',
-            'model' => Jet\Infrastructure\Security\UserModel::class, //  Bypass domain so we can take advantage of laravel
+            'driver' => 'doctrine',
+            'model' => Jet\Domain\System\Entity\User::class, //  Bypass domain so we can take advantage of laravel
         ],
 
         // 'users' => [

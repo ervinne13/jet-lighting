@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -175,6 +176,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
+
+        App\Providers\Domain\RepositoryServiceProvider::class,
 
     ],
 

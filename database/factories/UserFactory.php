@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use Jet\Infrastructure\Security\UserModel;
+use Jet\Infrastructure\System\UserModel;
 
 /*
 |--------------------------------------------------------------------------

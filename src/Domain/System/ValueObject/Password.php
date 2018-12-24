@@ -1,11 +1,11 @@
 <?php
 
-namespace Jet\Domain\Security\ValueObject;
+namespace Jet\Domain\System\ValueObject;
 
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Jet\Domain\Common\ValueObject\TextLengthInvariant;
-use Jet\Domain\Security\Exception\InvalidCredentialFormatException;
+use Jet\Domain\System\Exception\InvalidCredentialFormatException;
 
 /**
  * Invariant for passwords.

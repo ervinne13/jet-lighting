@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Jet\Domain\System\Service\UserRepository;
+use Jet\Domain\System\ValueObject\Username;
 
 class LoginController extends Controller
 {
@@ -28,13 +32,20 @@ class LoginController extends Controller
     protected $redirectTo = '/';
 
     /**
+     * @var UserRepository
+     */
+    protected $userRepository;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepository $userRepository)
     {
         $this->middleware('guest')->except('logout');
+
+        $this->userRepository = $userRepository;
     }
 
     /**
