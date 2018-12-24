@@ -8,6 +8,7 @@ use Jet\Domain\System\Exception\RegistrationFailedException;
 use Jet\Domain\System\Service\UserRepository;
 use Jet\Domain\System\ValueObject\Credentials;
 use Jet\Domain\System\ValueObject\Username;
+use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 
 /**
@@ -16,6 +17,8 @@ use LaravelDoctrine\ORM\Facades\EntityManager;
  */
 class UserRegistration
 {
+    use Timestamps;
+
     /** @var Credentials */
     private $credentials;
 
