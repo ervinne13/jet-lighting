@@ -1,10 +1,10 @@
 <?php
 
-namespace Jet\Domain\Security\ValueObject;
+namespace Jet\Domain\System\ValueObject;
 
 use Jet\Domain\Common\ValueObject\TextLengthInvariant;
-use Jet\Domain\Security\Exception\RegistrationFailedException;
-use Jet\Domain\Security\ValueObject\Password;
+use Jet\Domain\System\Exception\RegistrationFailedException;
+use Jet\Domain\System\ValueObject\Password;
 
 class MatchingPasswords
 {

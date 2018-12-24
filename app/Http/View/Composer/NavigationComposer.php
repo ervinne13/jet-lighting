@@ -16,7 +16,8 @@ class NavigationComposer
      */
     public function compose(View $view)
     {
-        $view->with('displayName', 'Ervinne Sodusta');
+        $user = current_user();        
+        $view->with('displayName', $user->getDisplayName());
         $view->with('displayPosition', 'System Admin');
         $view->with('navigation', 'all');
     }

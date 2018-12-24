@@ -1,6 +1,6 @@
 <?php
 
-namespace Jet\Infrastructure\Security;
+namespace Jet\Infrastructure\System;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;

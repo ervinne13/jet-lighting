@@ -1,12 +1,12 @@
 <?php
 
-namespace Jet\Domain\Security\ValueObject;
+namespace Jet\Domain\System\ValueObject;
 
-use Jet\Domain\Security\ValueObject\Password;
-use Jet\Domain\Security\ValueObject\Username;
+use Jet\Domain\System\ValueObject\Password;
+use Jet\Domain\System\ValueObject\Username;
 
 /**
- * @Immutable
+ * Immutable value object representing user credentials: username & password
  */
 class Credentials
 {

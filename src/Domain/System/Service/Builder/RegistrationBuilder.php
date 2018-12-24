@@ -1,12 +1,12 @@
 <?php
 
-namespace Jet\Domain\Security\Service\Builder;
+namespace Jet\Domain\System\Service\Builder;
 
-use Jet\Domain\Security\Registration;
-use Jet\Domain\Security\ValueObject\Credentials;
-use Jet\Domain\Security\ValueObject\MatchingPasswords;
-use Jet\Domain\Security\ValueObject\Password;
-use Jet\Domain\Security\ValueObject\Username;
+use Jet\Domain\System\UserRegistration;
+use Jet\Domain\System\ValueObject\Credentials;
+use Jet\Domain\System\ValueObject\MatchingPasswords;
+use Jet\Domain\System\ValueObject\Password;
+use Jet\Domain\System\ValueObject\Username;
 
 class RegistrationBuilder
 {
@@ -40,9 +40,9 @@ class RegistrationBuilder
         return $this;
     }
 
-    public function build() : Registration
+    public function build() : UserRegistration
     {
-        return new Registration(
+        return new UserRegistration(
             new Credentials($this->username, $this->password), 
             $this->displayName
         );

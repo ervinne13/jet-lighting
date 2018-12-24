@@ -1,10 +1,10 @@
 <?php
 
-namespace Jet\Domain\Security\ValueObject;
+namespace Jet\Domain\System\ValueObject;
 
 use Exception;
 use Jet\Domain\Common\ValueObject\TextLengthInvariant;
-use Jet\Domain\Security\Exception\InvalidCredentialFormatException;
+use Jet\Domain\System\Exception\InvalidCredentialFormatException;
 
 /**
  * Invariant for usernames.

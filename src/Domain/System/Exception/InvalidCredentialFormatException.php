@@ -1,6 +1,6 @@
 <?php
 
-namespace Jet\Domain\Security\Exception;
+namespace Jet\Domain\System\Exception;
 
 use Exception;
 
