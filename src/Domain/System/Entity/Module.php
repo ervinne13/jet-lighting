@@ -5,15 +5,17 @@ namespace Jet\Domain\System\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 
 use Illuminate\Contracts\Auth\Authenticatable as LaravelAuthenticatable;
-use Jet\Domain\System\Entity\Location;
+use Jet\Domain\System\ValueObject\ModuleCode;
+use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use LaravelDoctrine\ORM\Auth\Authenticatable as DoctrineAuthenticatable;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="users")
+ * @ORM\Table(name="modules")
  */
 class Module
-{    
+{
+    use Timestamps;
 
     /**
      * @ORM\Id
@@ -26,41 +28,19 @@ class Module
      */
     private $name;    
 
-    /**
-     * Cannot be instantiated.
-     * Creation of new users must go through UserRegistration model.
-     */
-    private function __construct()
+    public function __construct(ModuleCode $code, string $name)
     {
-        //  cannot be instantiated
+        $this->code = $code->getStringValue();
+        $this->name = $name;
     }
 
-    function assignLocation(Location $location) : void
+    public function getCode() : string
     {
-
+        return $this->code;
     }
 
-    function dissociateLocation(Location $location) : void
-    {
-
-    }
-
-    function getUsername() : string
-    {
-        return $this->username;
-    }
-
-    function getName() : string
+    public function getName() : string
     {
         return $this->displayName;
-    }
-
-    /**
-     * Get the column name for the primary key
-     * @return string
-     */
-    public function getAuthIdentifierName()
-    {
-        return 'username';
     }
 }
