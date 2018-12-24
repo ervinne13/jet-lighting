@@ -26,11 +26,11 @@ class Module
     /**
      * @ORM\Column(type="string")
      */
-    private $name;    
+    private $name;
 
     public function __construct(ModuleCode $code, string $name)
     {
-        $this->code = $code->getStringValue();
+        $this->code = $code->getStringVal();
         $this->name = $name;
     }
 

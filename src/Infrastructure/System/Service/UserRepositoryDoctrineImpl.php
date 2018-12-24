@@ -12,13 +12,13 @@ class UserRepositoryDoctrineImpl extends EntityRepository implements UserReposit
     public function findByUsername(Username $username) : User
     {
         return $this->findOneBy([
-            'username' => $username->getStringValue()
+            'username' => $username->getStringVal()
         ]);
     }
 
     public function isRegistered(Username $username) : bool
     {
-        $criteria = ['username' => $username->getStringValue()];
+        $criteria = ['username' => $username->getStringVal()];
         return $this->count($criteria) > 0;
     }
 }

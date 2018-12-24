@@ -28,7 +28,7 @@ class RegistrationBuilder
 
     public function withPassword(string $password)
     {
-        $this->password = (new Password($password))->getStringValue();
+        $this->password = (new Password($password))->getStringVal();
         return $this;
     }
 

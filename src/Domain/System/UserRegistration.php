@@ -52,7 +52,7 @@ class UserRegistration
 
     public function __construct(Credentials $credentials, string $name)
     {
-        $this->username = $credentials->getUsername()->getStringValue();
+        $this->username = $credentials->getUsername()->getStringVal();
         $this->password = $credentials->getPassword()->getHashed();        
         $this->name = $name;
     }

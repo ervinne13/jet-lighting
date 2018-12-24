@@ -37,7 +37,8 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Jet\\": "src/"
+            "Jet\\": "src/",
+            "Ervinne\\": "lib/Ervinne"
         },
         "classmap": [
             "database/seeds",

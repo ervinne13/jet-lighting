@@ -19,7 +19,7 @@ class Password extends TextLengthInvariant
 {
     public function getHashed() : string
     {
-        return Hash::make($this->getStringValue());
+        return Hash::make($this->getStringVal());
     }
 
     protected function getRequiredTextLength() : int

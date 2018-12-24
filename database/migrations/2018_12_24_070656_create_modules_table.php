@@ -15,7 +15,9 @@ class CreateModulesTable extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->string('code', 20)->primary();
-            $table->string('name', 100);            
+            $table->string('name', 100);
+            $table->string('uri', 50);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

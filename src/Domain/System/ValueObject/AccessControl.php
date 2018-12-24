@@ -22,7 +22,7 @@ class AccessControl
         $this->type = $type;
     }
 
-    public function getStringValue() : string
+    public function getStringVal() : string
     {
         return $type;
     }
