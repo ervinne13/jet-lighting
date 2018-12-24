@@ -3,8 +3,10 @@
 namespace Jet\Domain\System\ValueObject;
 
 use Jet\Domain\System\ValueObject\ModuleCode;
+use Jet\Domain\System\ValueObject\NavigationNodesParent;
+use Jet\Domain\System\ValueObject\NavigationTree;
 
-class NavigationNode
+class NavigationNode extends NavigationTree implements NavigationNodesParent
 {
     /** @var string */
     private $moduleCode;    
@@ -18,8 +20,8 @@ class NavigationNode
     /** @var string */
     private $route;
 
-    /** @var array */
-    private $children;
+    /** @var bool */
+    private $isVisible;
 
     public function __construct(                 
         string $iconClass, 
@@ -37,16 +39,12 @@ class NavigationNode
         $this->route = $route;
 
         $this->children = [];
-    }
-
-    public function addChild(NavigationNode $node)
-    {
-        $this->children[] = $node;
-    }
+        $this->isVisible = true;
+    }    
     
     public function isMerelyAContainer() : bool
     {
-        return $this->route === null && count($this->children) > 0;
+        return $this->route === null && $this->getChildCount() > 0;
     }
 
     public function getModuleCode() : string
@@ -69,8 +67,15 @@ class NavigationNode
         return $this->text;
     }
 
-    public function getChildren() : array
+    public function getChildCount() : int
     {
-        return $this->children;
+        return count($this->getChildren());
     }
+
+    public function __toString()
+    {
+        $childCount = $this->getChildCount();
+        return "{$this->text}: {$childCount}";
+    }
+
 }

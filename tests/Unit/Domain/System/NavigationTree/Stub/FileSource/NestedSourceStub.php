@@ -1,8 +1,6 @@
 <?php
 
-namespace Tests\Unit\Domain\System\NavigationTree\Stub;
-
-use Tests\Unit\Domain\System\NavigationTree\Stub\FlatSourceStub;
+namespace Tests\Unit\Domain\System\NavigationTree\Stub\FileSource;
 
 class NestedSourceStub
 {
@@ -25,6 +23,12 @@ class NestedSourceStub
                         'module'        => 'file', 
                         'route'         => 'files'
                     ],
+                    [                
+                        'icon_class'    => 'fa fa-file', 
+                        'text'          => 'Dummy Management',
+                        'module'        => 'dummy', 
+                        'route'         => 'dummies'
+                    ],                    
                 ]
             ],
         ];

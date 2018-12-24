@@ -14,7 +14,7 @@ class NavigationTreeBuilderArrayImpl implements NavigationTreeBuilder
         $navTree = new NavigationTree();
 
         foreach($nodes as $node) {
-            $navTree->addNode($this->buildNodeFromAssocArray($node));
+            $navTree->addChild($this->buildNodeFromAssocArray($node));
         }
 
         return $navTree;

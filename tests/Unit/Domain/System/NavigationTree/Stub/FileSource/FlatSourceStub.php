@@ -1,8 +1,6 @@
 <?php
 
-namespace Tests\Unit\Domain\System\NavigationTree\Stub;
-
-use Tests\Unit\Domain\System\NavigationTree\Stub\FlatSourceStub;
+namespace Tests\Unit\Domain\System\NavigationTree\Stub\FileSource;
 
 class FlatSourceStub
 {

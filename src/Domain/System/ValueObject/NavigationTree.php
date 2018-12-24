@@ -5,11 +5,34 @@ namespace Jet\Domain\System\ValueObject;
 use ArrayAccess;
 use Ervinne\Arrays\ArrayAccessible;
 use Jet\Domain\System\ValueObject\NavigationNode;
+use Jet\Domain\System\ValueObject\NavigationNodesParent;
 
-class NavigationTree extends ArrayAccessible
+class NavigationTree implements NavigationNodesParent
 {
-    public function addNode(NavigationNode $node)
+    /** @var array */
+    protected $children;
+
+    public function __construct(array $nodes = [])
     {
-        $this->array[] = $node;
-    }    
+        $this->addChildren($nodes);
+    }
+
+    public function addChild(NavigationNode $node)
+    {
+        $this->children[] = $node;
+        return $this;
+    }
+
+    public function addChildren(array $nodes)
+    {
+        foreach($nodes as $node) {
+            $this->addChild($node);
+        }
+        return $this;
+    }
+
+    public function getChildren() : array
+    {
+        return $this->children;
+    }
 }
