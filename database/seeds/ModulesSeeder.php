@@ -18,6 +18,11 @@ class ModulesSeeder extends Seeder
             ['U', 'User Management'],
             ['R', 'Role Management'],
             ['TN', 'Tracking Number Management'],
+            ['CQ', 'Customer Quotation'],
+            ['RQ', 'Requisition'],
+            ['PO', 'Purchase Order'],
+            ['QA', 'Purchase Quality Assurance'],
+            ['SI', 'Sales Invoice'],
         ];
 
         foreach($moduleDataList as $moduleData) {

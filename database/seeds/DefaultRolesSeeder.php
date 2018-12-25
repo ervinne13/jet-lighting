@@ -25,16 +25,60 @@ class DefaultRolesSeeder extends Seeder
      */
     public function run()
     {
-        $security = new Role('Security Manager');
-
-        EntityManager::persist($security);
-
-        $this->persistACL($security, [
-            ['U', AccessControl::MANAGER],
-            ['R', AccessControl::MANAGER],
-        ]);
+        $this->createAdmin();
+        $this->createGeneralManager();
+        $this->createCSROfficer();
+        $this->createSales();
 
         EntityManager::flush();
+    }
+
+    private function createAdmin()
+    {
+        $admin = new Role('Administrator');
+        EntityManager::persist($admin);
+        $this->persistACL($admin, [
+            ['U', AccessControl::MANAGER],
+            ['R', AccessControl::MANAGER],
+            ['TN', AccessControl::MANAGER],
+        ]);
+    }
+
+    private function createGeneralManager()
+    {
+        $gm = new Role('General Manager');
+        EntityManager::persist($gm);
+        $this->persistACL($gm, [
+            ['TN', AccessControl::MANAGER],
+            ['CQ', AccessControl::MANAGER],
+            ['RQ', AccessControl::MANAGER],
+            ['PO', AccessControl::MANAGER],
+            ['QA', AccessControl::MANAGER],
+            ['SI', AccessControl::MANAGER],
+        ]);
+    }
+
+    private function createCSROfficer()
+    {
+        $csr = new Role('CSR Officer');
+        EntityManager::persist($csr);
+        $this->persistACL($csr, [
+            ['CQ', AccessControl::AUTHOR],
+            ['RQ', AccessControl::AUTHOR],
+            ['PO', AccessControl::AUTHOR],
+            ['QA', AccessControl::AUTHOR],
+            ['SI', AccessControl::AUTHOR],
+        ]);
+    }
+
+    private function createSales()
+    {
+        $sales = new Role('Sales');
+        EntityManager::persist($sales);
+        $this->persistACL($sales, [
+            ['RQ', AccessControl::AUTHOR],
+            ['PO', AccessControl::AUTHOR],
+        ]);
     }
 
     private function persistACL(Role $role, $array)

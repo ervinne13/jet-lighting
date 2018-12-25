@@ -12,10 +12,22 @@
         </thead>
         <tbody>
             {% for (let i in o.accessControlList) { %}
+            {% 
+                let colorClass = 'badge-primary';
+                switch(o.accessControlList[i].access) {
+                    case 'viewer':
+                        colorClass = 'badge-success';
+                        break;
+                    case 'author':
+                        colorClass = 'badge-info';
+                        break;
+                }
+            %}
+
             <tr>
                 <td>{%= o.accessControlList[i].module.code %}</td>                                    
                 <td>{%= o.accessControlList[i].module.name %}</td>
-                <td> <span class="badge badge-primary">{%= o.accessControlList[i].access %}</span> </td>
+                <td> <span class="badge {%= colorClass %}">{%= o.accessControlList[i].access %}</span> </td>
             </tr>
             {% } %}
         </tbody>
