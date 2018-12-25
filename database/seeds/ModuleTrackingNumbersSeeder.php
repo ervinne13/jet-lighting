@@ -29,7 +29,7 @@ class ModuleTrackingNumbersSeeder extends Seeder
     public function run()
     {
         $moduleCodes = [
-            'CC', 'I', 'CQ', 'RQ','PO', 'SI'
+            'CC', 'S', 'I', 'CQ', 'RQ','PO', 'SI'
         ];
 
         $builder = new TrackingNumberBuilder();

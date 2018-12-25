@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClientCompaniesTable extends Migration
+class CreateQuotationTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateClientCompaniesTable extends Migration
      */
     public function up()
     {
-        Schema::create('client_companies', function (Blueprint $table) {
+        Schema::create('quotation_headers', function (Blueprint $table) {
             $table->string('document_number', 50)->primary();
             $table->string('name', 100);
             $table->text('address');
             $table->string('contact_person', 100);
             $table->string('contact_number', 20);
             $table->string('email_address', 100);
+            $table->string('ref_client_tracking_number', 50)->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateClientCompaniesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client_companies');
+        Schema::dropIfExists('quotation_headers');
     }
 }

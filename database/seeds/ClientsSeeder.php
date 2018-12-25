@@ -2,7 +2,7 @@
 
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Database\Seeder;
-use Jet\Domain\CRM\Service\Builder\ClientCompanyBuilder;
+use Jet\Domain\Common\Service\Builder\CompanyBasedEntityBuilder;
 
 class ClientsSeeder extends Seeder
 {
@@ -23,7 +23,7 @@ class ClientsSeeder extends Seeder
     {
         $trackingNumber = tracking_number_by_module('CC');
         
-        $builder = new ClientCompanyBuilder();
+        $builder = new CompanyBasedEntityBuilder();
         $builder
             ->withName('CRC REALTY DEVELOPMENT CORPORATION')
             ->withAddress('31 National Highway, San Pedro City, Laguna')
@@ -31,8 +31,8 @@ class ClientsSeeder extends Seeder
             ->withContactNumber('09123456789')
             ->withEmailAddress('contact@crc-dev.com');
 
-        $client = $builder->build();
-        $client->setTrackingNumber($trackingNumber->commit());
+        $client = $builder->buildClientCompany();
+        $client->setDocumentNumber($trackingNumber->commit());
 
         $this->em->persist($trackingNumber);
         $this->em->persist($client);

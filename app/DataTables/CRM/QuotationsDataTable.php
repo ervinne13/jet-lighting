@@ -5,7 +5,7 @@ namespace App\DataTables\CRM;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Services\DataTable;
 
-class ClientCompaniesDataTable extends DataTable
+class QuotationsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -31,7 +31,7 @@ class ClientCompaniesDataTable extends DataTable
     
     public function query()
     {
-        $query = DB::table('client_companies')
+        $query = DB::table('quotations')
                 ->select(...$this->getColumns());
         return $query;
     }
@@ -62,6 +62,7 @@ class ClientCompaniesDataTable extends DataTable
             'name',
             'contact_person',
             'contact_number',
+            'ref_client_tracking_number',
             'updated_at',
         ];
     }

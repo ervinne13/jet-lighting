@@ -11,6 +11,7 @@ class ClientCompanyBuilder
     private $contactPerson;
     private $contactNumber;
     private $emailAddress;
+    private $refClientTrackingNumber;
 
     public function withName(string $name)
     {
@@ -43,6 +44,26 @@ class ClientCompanyBuilder
     public function withEmailAddress(string $emailAddress)
     {
         $this->emailAddress = $emailAddress;
+
+        return $this;
+    }
+
+    public function withRefClientTrackingNumber(string $trackingNumber) 
+    {
+        $this->refClientTrackingNumber = $trackingNumber;
+
+        return $this;
+    }
+
+    public function withClientCompany(ClientCompany $clientCompany)
+    {
+        $this->name             = $clientCompany->getName();
+        $this->address          = $clientCompany->getAddress();
+        $this->contactPerson    = $clientCompany->getContactPerson();
+        $this->contactNumber    = $clientCompany->getContactNumber();
+        $this->emailAddress     = $clientCompany->getEmailAddress();
+
+        $this->refClientTrackingNumber = $clientCompany->getDocumentNumber();
 
         return $this;
     }
