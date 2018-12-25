@@ -18,4 +18,10 @@ return [
         'module'        => 'TN',
         'route'         => 'tracking-numbers.index'
     ],
+    [                
+        'icon_class'    => 'fa fa-users', 
+        'text'          => 'Client Companies',
+        'module'        => 'CC',
+        'route'         => 'client-companies.index'
+    ],
 ];

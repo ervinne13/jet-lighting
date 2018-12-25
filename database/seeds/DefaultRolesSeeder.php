@@ -39,7 +39,8 @@ class DefaultRolesSeeder extends Seeder
         EntityManager::persist($admin);
         $this->persistACL($admin, [
             ['U', AccessControl::MANAGER],
-            ['R', AccessControl::MANAGER],
+            ['R', AccessControl::MANAGER],            
+            ['I', AccessControl::MANAGER],
             ['TN', AccessControl::MANAGER],
         ]);
     }
@@ -49,6 +50,8 @@ class DefaultRolesSeeder extends Seeder
         $gm = new Role('General Manager');
         EntityManager::persist($gm);
         $this->persistACL($gm, [
+            ['CC', AccessControl::MANAGER],
+            ['I', AccessControl::MANAGER],
             ['TN', AccessControl::MANAGER],
             ['CQ', AccessControl::MANAGER],
             ['RQ', AccessControl::MANAGER],

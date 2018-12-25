@@ -18,6 +18,8 @@ class ModulesSeeder extends Seeder
             ['U', 'User Management'],
             ['R', 'Role Management'],
             ['TN', 'Tracking Number Management'],
+            ['CC', 'Client Company Management'],
+            ['I', 'Item Management'],
             ['CQ', 'Customer Quotation'],
             ['RQ', 'Requisition'],
             ['PO', 'Purchase Order'],
