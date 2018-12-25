@@ -24,4 +24,10 @@ return [
         'module'        => 'CC',
         'route'         => 'client-companies.index'
     ],
+    [                
+        'icon_class'    => 'fa fa-address-card', 
+        'text'          => 'Quotations',
+        'module'        => 'CQ',
+        'route'         => 'quotations.index'
+    ],
 ];

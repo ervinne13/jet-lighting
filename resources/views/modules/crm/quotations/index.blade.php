@@ -3,7 +3,7 @@
 @include('lib.vendor.datatables')
 @include('lib.vendor.sweetalert')
 
-@section('title', 'Tracking Number Management')
+@section('title', 'Customer Quotations')
 
 @section('js')
 {!! $dataTable->scripts() !!}
@@ -16,7 +16,7 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-content box-min-height">
-                    <h3>Tracking Numbers</h3>
+                    <h3>Customer Quotations</h3>
                     {!! $dataTable->table(['class' => 'table table-hover']) !!}
                 </div>
             </div>

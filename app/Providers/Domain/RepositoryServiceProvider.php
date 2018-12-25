@@ -3,6 +3,8 @@
 namespace App\Providers\Domain;
 
 use Illuminate\Support\ServiceProvider;
+use Jet\Domain\PLD\Entity\Supplier;
+use Jet\Domain\PLD\Service\SupplierRepository;
 use Jet\Domain\System\Entity\Module;
 use Jet\Domain\System\Entity\Role;
 use Jet\Domain\System\Entity\TrackingNumber;
@@ -13,6 +15,7 @@ use Jet\Domain\System\Service\TrackingNumberRepository;
 use Jet\Domain\System\Service\UserRepository;
 use Jet\Infrastructure\System\Service\ModuleRepositoryDoctrineImpl;
 use Jet\Infrastructure\System\Service\RoleRepositoryDoctrineImpl;
+use Jet\Infrastructure\System\Service\SupplierRepositoryDoctrineImpl;
 use Jet\Infrastructure\System\Service\TrackingNumberRepositoryDoctrineImpl;
 use Jet\Infrastructure\System\Service\UserRepositoryDoctrineImpl;
 use LaravelDoctrine\ORM\Facades\EntityManager;
@@ -47,6 +50,12 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(TrackingNumberRepository::class, function($app) {
             return new TrackingNumberRepositoryDoctrineImpl(
                 ...$this->getDoctrineRepositoryParams(TrackingNumber::class)
+            );
+        });
+
+        $this->app->singleton(SupplierRepository::class, function($app) {
+            return new SupplierRepositoryDoctrineImpl(
+                ...$this->getDoctrineRepositoryParams(Supplier::class)
             );
         });
     }

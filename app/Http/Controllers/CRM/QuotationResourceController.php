@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers\CRM;
 
-use App\DataTables\CRM\ClientCompaniesDataTable;
+use App\DataTables\CRM\QuotationsDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ClientCompanyResourceController extends Controller
+class QuotationResourceController extends Controller
 {
-    const MODULE_CODE = 'CC';
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ClientCompaniesDataTable $dataTable)
+    public function index(QuotationsDataTable $dataTable)
     {
-        return $dataTable->render('modules.crm.client-companies.index');
+        return $dataTable->render('modules.crm.quotations.index');
     }
 
     /**
@@ -27,11 +25,7 @@ class ClientCompanyResourceController extends Controller
      */
     public function create()
     {
-        return view('modules.crm.client-companies.form', [
-            'documentCloseRoute'    => 'client-companies.index',
-            'mode'                  => 'create',
-            'trackingNumber'        => reserve_tracking_number(static::MODULE_CODE) . ' (Tentative)'
-        ]);
+        //
     }
 
     /**
