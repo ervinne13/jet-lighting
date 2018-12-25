@@ -7,6 +7,9 @@
 
     <link rel="stylesheet" href="{!! asset('css/inspinia-vendor.min.css') !!}" />
     <link rel="stylesheet" href="{!! asset('css/inspinia.min.css') !!}" />
+
+    <link rel="stylesheet" href="{!! asset('css/app.css') !!}" />
+    @yield('css')
 </head>
 <body>
 
@@ -36,8 +39,7 @@
 
 <script src="{!! asset('js/inspinia.min.js') !!}" type="text/javascript"></script>
 
-@section('scripts')
-@show
+@yield('js')
 
 </body>
 </html>

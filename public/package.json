@@ -1,0 +1,15 @@
+{
+  "name": "jet-lighting",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ervinne Sodusta",
+  "license": "ISC",
+  "dependencies": {
+    "blueimp-tmpl": "^3.11.0",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^7.33.1"
+  }
+}

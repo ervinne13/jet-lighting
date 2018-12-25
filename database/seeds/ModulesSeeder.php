@@ -16,6 +16,7 @@ class ModulesSeeder extends Seeder
     {
         $moduleDataList = [
             ['U', 'User Management'],
+            ['R', 'Role Management'],
             ['TN', 'Tracking Number Management'],
         ];
 

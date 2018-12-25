@@ -16,5 +16,6 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/', 'DashboardController@index')->name("dashboard");
+    Route::resource('roles', 'System\RoleResourceController');
     Route::resource('tracking-numbers', 'System\TrackingNumberResourceController');
 });

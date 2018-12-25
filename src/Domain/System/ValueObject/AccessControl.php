@@ -24,7 +24,7 @@ class AccessControl
 
     public function getStringVal() : string
     {
-        return $type;
+        return $this->type;
     }
 
     private function getValidTypes() : array
