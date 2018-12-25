@@ -21,7 +21,7 @@ class QuotationsDataTable extends DataTable
             })
             ->addColumn('action', function($model) {
                 return view('lib.datatable.static-actions', [
-                    'id'    => $model->tracking_number,
+                    'id'    => $model->document_number,
                     'route' => '/crm/client-companies'
                 ]);
             })
@@ -58,11 +58,11 @@ class QuotationsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'tracking_number',
+            'document_number',
             'name',
             'contact_person',
             'contact_number',
-            'ref_client_tracking_number',
+            'ref_client_document_number',
             'updated_at',
         ];
     }
