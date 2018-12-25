@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Jet Lighting Operations') </title>
 
+    @yield('pre-inspinia-css')
+
     <link rel="stylesheet" href="{!! asset('css/inspinia-vendor.min.css') !!}" />
     <link rel="stylesheet" href="{!! asset('css/inspinia.min.css') !!}" />
 

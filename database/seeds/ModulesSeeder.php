@@ -1,5 +1,6 @@
 <?php
 
+use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Database\Seeder;
 use Jet\Domain\System\Entity\Module;
 use Jet\Domain\System\ValueObject\ModuleCode;
@@ -7,6 +8,14 @@ use LaravelDoctrine\ORM\Facades\EntityManager;
 
 class ModulesSeeder extends Seeder
 {
+    /** @var EntityManagerInterface */
+    private $em;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     /**
      * Run the database seeds.
      *
@@ -32,11 +41,11 @@ class ModulesSeeder extends Seeder
                 new ModuleCode($moduleData[0]), 
                 $moduleData[1]
             );
-            EntityManager::persist($module);
+            $this->em->persist($module);
             //  TODO: if modules grow, use a buffer:
             //  https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/batch-processing.html#bulk-inserts
         }
-        EntityManager::flush();
-        EntityManager::clear();
+        $this->em->flush();
+        $this->em->clear();
     }
 }

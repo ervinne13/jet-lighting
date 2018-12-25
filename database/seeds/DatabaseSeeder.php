@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {        
         $this->call(DefaultLocationsSeeder::class);
         $this->call(ModulesSeeder::class);
+        $this->call(ModuleTrackingNumbersSeeder::class);
         $this->call(DefaultRolesSeeder::class);
 
         $this->call(DefaultAdminSeeder::class);

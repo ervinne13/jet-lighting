@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@include('lib.js.sweetalert')
-@include('lib.js.blueimp-tmpl')
+@include('lib.vendor.sweetalert')
+@include('lib.vendor.blueimp-tmpl')
 
 @section('title', 'Role Management')
 

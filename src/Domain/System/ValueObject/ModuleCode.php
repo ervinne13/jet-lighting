@@ -15,11 +15,17 @@ class ModuleCode
 
     public function __construct(string $code)
     {
+        $code = trim($code);
         if (strlen($code) > $this->maxLength) {
             throw new Exception("Module code must not exceed {$this->maxLength} characters.");
         }
 
         $this->code = strtoupper($code);
+    }
+
+    public static function fromString(string $code) : ModuleCode
+    {
+        return new static($code);
     }
 
     public function getStringVal()

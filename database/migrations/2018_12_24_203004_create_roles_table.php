@@ -26,7 +26,7 @@ class CreateRolesTable extends Migration
 
             $table->primary(['role_id', 'module_code']);
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->foreign('module_code')->references('code')->on('modules');            
+            $table->foreign('module_code')->references('code')->on('modules');
         });
     }
 
