@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\CRM;
 
+use App\DataTables\CRM\ClientCompaniesDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,9 @@ class ClientCompanyResourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ClientCompaniesDataTable $dataTable)
     {
-        //
+        return $dataTable->render('modules.crm.client-companies.index');
     }
 
     /**
