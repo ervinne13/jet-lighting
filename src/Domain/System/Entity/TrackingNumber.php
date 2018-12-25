@@ -21,9 +21,9 @@ class TrackingNumber
      */
     private $code;
 
-    /**
+    /**     
      * @ORM\ManyToOne(targetEntity="Module")
-     * @ORM\JoinColumn(name="module_code", referencedColumnName="code")
+     * @ORM\JoinColumn(name="module_code", referencedColumnName="code")     
      */
     private $module;
 

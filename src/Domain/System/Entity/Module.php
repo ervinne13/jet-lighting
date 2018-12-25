@@ -3,7 +3,6 @@
 namespace Jet\Domain\System\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
-
 use Illuminate\Contracts\Auth\Authenticatable as LaravelAuthenticatable;
 use Jet\Domain\System\ValueObject\ModuleCode;
 use JsonSerializable;
@@ -29,6 +28,11 @@ class Module implements JsonSerializable
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="TrackingNumber", mappedBy="module")
+     */
+    private $trackingNumbers;
+
     public function __construct(ModuleCode $code, string $name)
     {
         $this->code = $code->getStringVal();
@@ -43,6 +47,11 @@ class Module implements JsonSerializable
     public function getName() : string
     {
         return $this->name;
+    }
+
+    public function getTrackingNumbers() : array
+    {
+        return $this->trackingNumbers;
     }
 
     public function jsonSerialize()

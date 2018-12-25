@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\CRM;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class ClientCompanyResourceController extends Controller
 {
+    const MODULE_CODE = 'CC';
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +26,11 @@ class ClientCompanyResourceController extends Controller
      */
     public function create()
     {
-        //
+        return view('modules.crm.client-companies.form', [
+            'documentCloseRoute'    => 'client-companies.index',
+            'mode'                  => 'create',
+            'trackingNumber'        => reserve_tracking_number(static::MODULE_CODE) . ' (Tentative)'
+        ]);
     }
 
     /**
