@@ -15,8 +15,14 @@ class CreateTrackingNumbersTable extends Migration
     {
         Schema::create('tracking_numbers', function (Blueprint $table) {
             $table->string('code', 20)->primary();
-            $table->string('name', 100);            
+            $table->string('module_code', 20);   
+            $table->boolean('is_active')->default(true);
+            $table->integer('starting_number')->default(0)->unsigned();
+            $table->integer('ending_number')->default(99999999)->unsigned();
+            $table->integer('current_number')->default(0)->unsigned();
             $table->timestamps();
+
+            $table->foreign('module_code')->references('code')->on('modules');
         });
     }
 
