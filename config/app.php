@@ -178,6 +178,7 @@ return [
         App\Providers\ViewServiceProvider::class,
 
         App\Providers\Domain\RepositoryServiceProvider::class,
+        App\Providers\Domain\NavigationTreeProvider::class,
 
     ],
 

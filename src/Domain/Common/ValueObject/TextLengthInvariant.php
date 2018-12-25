@@ -27,7 +27,7 @@ abstract class TextLengthInvariant
 
     protected abstract function getExceptionToThrowOnInvalidValue(string $value) : Exception;
 
-    public function getStringValue() : string
+    public function getStringVal() : string
     {
         return $this->value;
     }

@@ -16,7 +16,15 @@ class ModulesSeeder extends Seeder
     {
         $moduleDataList = [
             ['U', 'User Management'],
+            ['R', 'Role Management'],
             ['TN', 'Tracking Number Management'],
+            ['CC', 'Client Company Management'],
+            ['I', 'Item Management'],
+            ['CQ', 'Customer Quotation'],
+            ['RQ', 'Requisition'],
+            ['PO', 'Purchase Order'],
+            ['QA', 'Purchase Quality Assurance'],
+            ['SI', 'Sales Invoice'],
         ];
 
         foreach($moduleDataList as $moduleData) {

@@ -18,7 +18,8 @@
                     JET
                 </div>
             </li>
-            @include("layouts.navigations.{$navigation}")
+            @include("layouts.navigations.dynamic-tree")
+            
         </ul>
 
     </div>

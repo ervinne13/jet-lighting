@@ -22,7 +22,7 @@ class ModuleCode
         $this->code = strtoupper($code);
     }
 
-    public function getStringValue()
+    public function getStringVal()
     {
         return $this->code;
     }
