@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ModuleTrackingNumbersSeeder::class);
         $this->call(DefaultRolesSeeder::class);
 
-        $this->call(DefaultAdminSeeder::class);
+        $this->call(DefaultUsersSeeder::class);
         
         $this->call(DummySuppliersSeeder::class);
         $this->call(DummyItemsSeeder::class);

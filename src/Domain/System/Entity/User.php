@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping AS ORM;
 
 use Illuminate\Contracts\Auth\Authenticatable as LaravelAuthenticatable;
 use Jet\Domain\System\Entity\Location;
+use Jet\Domain\System\Entity\Role;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 use LaravelDoctrine\ORM\Auth\Authenticatable as DoctrineAuthenticatable;
 
@@ -16,46 +17,54 @@ use LaravelDoctrine\ORM\Auth\Authenticatable as DoctrineAuthenticatable;
 class User implements LaravelAuthenticatable
 {
     use DoctrineAuthenticatable;
-    use Timestamps;
+    use Timestamps;   
 
-    /**
+     /**
      * @ORM\Id
      * @ORM\Column(type="string")
      */
-    private $username;
+    protected $username;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $name;    
+    protected $name;    
 
     /**
-     * Cannot be instantiated.
-     * Creation of new users must go through UserRegistration model.
+     * @ORM\OneToMany(targetEntity="UserRole", mappedBy="user")
      */
-    private function __construct()
+    private $userRoles;
+
+    public function __construct(string $username, string $name)
     {
-        //  cannot be instantiated
+        $this->username = $username;
+        $this->name = $name;
     }
 
-    function assignLocation(Location $location) : void
-    {
-
-    }
-
-    function dissociateLocation(Location $location) : void
+    public function assignLocation(Location $location) : void
     {
 
     }
 
-    function getUsername() : string
+    public function dissociateLocation(Location $location) : void
     {
-        return $this->username;
+
     }
 
-    function getName() : string
+    public function getName()
     {
         return $this->name;
+    }
+
+    public function getPrimaryRole() : Role
+    {
+        foreach($this->userRoles as $userRole) {
+            if ($userRole->isPrimary()) {
+                return $userRole->getRole();
+            }
+        }
+
+        return $this->userRoles[0];
     }
 
     /**

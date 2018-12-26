@@ -33,7 +33,7 @@ if (!function_exists('nullable_display_date')) {
 
     function nullable_display_date(string $baseDate = null)
     {
-        return $baseDate ? with(new Carbon($baseDate))->format('m/d/Y h:i a') : '';
+        return $baseDate ? with(new Carbon($baseDate))->format('M d, Y h:i a') : '';
     }
 
 }

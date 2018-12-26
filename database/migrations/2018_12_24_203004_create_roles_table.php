@@ -28,6 +28,16 @@ class CreateRolesTable extends Migration
             $table->foreign('role_id')->references('id')->on('roles');
             $table->foreign('module_code')->references('code')->on('modules');
         });
+
+        Schema::create('user_roles', function (Blueprint $table) {
+            $table->string('username', 100);
+            $table->integer('role_id')->unsigned();             
+            $table->boolean('is_primary')->default(false);
+
+            $table->primary(['username', 'role_id']);
+            $table->foreign('username')->references('username')->on('users');
+            $table->foreign('role_id')->references('id')->on('roles');
+        });
     }
 
     /**
@@ -37,6 +47,7 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('user_roles');
         Schema::dropIfExists('role_accessible_modules');
         Schema::dropIfExists('roles');
     }

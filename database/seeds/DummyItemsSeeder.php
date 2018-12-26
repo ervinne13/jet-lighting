@@ -34,15 +34,31 @@ class DummyItemsSeeder extends Seeder
             new SupplierCost($this->supplierRepo->find('S-00000002'), new Amount(350.00)),
             new SupplierCost($this->supplierRepo->find('S-00000004'), new Amount(349.00))
         ];
-        $item = new Item(
+        $ledWrapAround = new Item(
             "4' LED Wrap Around", 
             'Contemporary design, quick installation, Surface-mounted, impact resistant prismatic acrylic lens, ideal replacement for traditional 2-light integrated LED modules.',
             $costs
         );
 
-        $item->setId($trackingNumber->commit());
+        $ledWrapAround->setId($trackingNumber->commit());
+        $this->em->persist($ledWrapAround);
 
-        $this->em->persist($item);
+        $ledSecurityLightBlack = new Item(
+            "LED Security Light Black",
+            "LED wall pack with high bright LED chip, energy saving and pro environment lighting stable and long lifespan. Optical-grade glass lampshade. High heat conduction aluminum alloy shell, vacuum dust-free spray, anti-corrorsion, no stripping. Strict waterproof treatment technology, meet international waterproof and dustproof standards. Can three-dimensional rotatem wide rotation angle, flexible and convenient adjustment. Radiate light protection design, won't affect the lighting effects because of weather."
+        );
+
+        $ledSecurityLightBlack->setId($trackingNumber->commit());
+        $this->em->persist($ledSecurityLightBlack);
+
+        $jml12V = new Item(
+            "JML-303-12V",
+            "LED 1W X 3 150L 3000K Ideal in ceiling applications Perfect for use in kitchen and shelvings, cabinets, and displays Metal body May be mounted recessed Includes driver."
+        );
+
+        $jml12V->setId($trackingNumber->commit());
+        $this->em->persist($jml12V);
+
         $this->em->flush();
     }
 }

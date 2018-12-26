@@ -11,6 +11,8 @@
     "blueimp-tmpl": "^3.11.0",
     "datatables": "^1.10.18",
     "datatables-bootstrap": "0.0.1",
+    "jquery-sparkline": "^2.4.0",
+    "jquery.flot": "^0.8.3",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^7.33.1"
   }
