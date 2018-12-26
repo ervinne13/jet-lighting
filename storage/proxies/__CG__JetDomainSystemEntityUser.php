@@ -64,10 +64,10 @@ class User extends \Jet\Domain\System\Entity\User implements \Doctrine\ORM\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Jet\\Domain\\System\\Entity\\User' . "\0" . 'username', '' . "\0" . 'Jet\\Domain\\System\\Entity\\User' . "\0" . 'name', 'password', 'rememberToken', 'createdAt', 'updatedAt'];
+            return ['__isInitialized__', 'username', 'name', '' . "\0" . 'Jet\\Domain\\System\\Entity\\User' . "\0" . 'userRoles', 'password', 'rememberToken', 'createdAt', 'updatedAt'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Jet\\Domain\\System\\Entity\\User' . "\0" . 'username', '' . "\0" . 'Jet\\Domain\\System\\Entity\\User' . "\0" . 'name', 'password', 'rememberToken', 'createdAt', 'updatedAt'];
+        return ['__isInitialized__', 'username', 'name', '' . "\0" . 'Jet\\Domain\\System\\Entity\\User' . "\0" . 'userRoles', 'password', 'rememberToken', 'createdAt', 'updatedAt'];
     }
 
     /**
@@ -198,27 +198,23 @@ class User extends \Jet\Domain\System\Entity\User implements \Doctrine\ORM\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getUsername(): string
-    {
-        if ($this->__isInitialized__ === false) {
-            return  parent::getUsername();
-        }
-
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUsername', []);
-
-        return parent::getUsername();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getName(): string
+    public function getName()
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', []);
 
         return parent::getName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPrimaryRole(): \Jet\Domain\System\Entity\Role
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPrimaryRole', []);
+
+        return parent::getPrimaryRole();
     }
 
     /**

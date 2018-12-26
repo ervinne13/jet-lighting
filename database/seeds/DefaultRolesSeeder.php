@@ -76,7 +76,7 @@ class DefaultRolesSeeder extends Seeder
 
     private function createSales()
     {
-        $sales = new Role('Sales');
+        $sales = new Role('Sales Officer');
         EntityManager::persist($sales);
         $this->persistACL($sales, [
             ['RQ', AccessControl::AUTHOR],

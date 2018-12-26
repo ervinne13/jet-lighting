@@ -30,6 +30,7 @@ class ModulesSeeder extends Seeder
             ['CC', 'Client Company Management'],
             ['S', 'Supplier Management'],
             ['I', 'Item Management'],
+            ['ISI', 'Item Stock Inquiry'],
             ['CQ', 'Customer Quotation'],
             ['RQ', 'Requisition'],
             ['PO', 'Purchase Order'],
@@ -50,3 +51,4 @@ class ModulesSeeder extends Seeder
         $this->em->clear();
     }
 }
+

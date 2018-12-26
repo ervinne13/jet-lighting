@@ -2,6 +2,7 @@
 
 namespace Jet\Domain\System\Service\Builder;
 
+use Jet\Domain\System\Entity\Role;
 use Jet\Domain\System\UserRegistration;
 use Jet\Domain\System\ValueObject\Credentials;
 use Jet\Domain\System\ValueObject\MatchingPasswords;
@@ -13,6 +14,7 @@ class RegistrationBuilder
     private $name;
     private $username;
     private $password;
+    private $role;
 
     public function withDisplayName(string $name)
     {
@@ -40,11 +42,26 @@ class RegistrationBuilder
         return $this;
     }
 
+    public function withRole(Role $role)
+    {
+        $this->role = $role;
+        return $this;
+    }
+
     public function build() : UserRegistration
     {
         return new UserRegistration(
             new Credentials($this->username, $this->password), 
-            $this->displayName
+            $this->displayName,
+            $this->role
         );
+    }
+
+    public function flush() : void
+    {
+        $this->displayName = null;
+        $this->username = null;
+        $this->password = null;
+        $this->role = null;
     }
 }

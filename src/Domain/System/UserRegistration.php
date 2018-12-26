@@ -3,9 +3,12 @@
 namespace Jet\Domain\System;
 
 use Doctrine\ORM\Mapping AS ORM;
+use Jet\Domain\System\Entity\Role;
 use Jet\Domain\System\Entity\User;
+use Jet\Domain\System\Entity\UserRole;
 use Jet\Domain\System\Exception\RegistrationFailedException;
 use Jet\Domain\System\Service\UserRepository;
+use Jet\Domain\System\UserRegistrationRole;
 use Jet\Domain\System\ValueObject\Credentials;
 use Jet\Domain\System\ValueObject\Username;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
@@ -41,20 +44,32 @@ class UserRegistration
     private $name;
 
     /**
+     * @ORM\OneToMany(targetEntity="UserRegistrationRole", mappedBy="user", cascade={"persist"})
+     */
+    private $userRoles;
+
+    /**
      * @var boolean
      */
     private $validatesUserExistence = true;
+
+    /**
+     * @var User
+     */
+    private $generatedUser;
 
     /**
      * @var UserRepository
      */
     private $repository;
 
-    public function __construct(Credentials $credentials, string $name)
+    public function __construct(Credentials $credentials, string $name, Role $role)
     {
         $this->username = $credentials->getUsername()->getStringVal();
         $this->password = $credentials->getPassword()->getHashed();        
         $this->name = $name;
+
+        $this->userRoles = [new UserRegistrationRole($role, $this, true)];
     }
 
     /**
@@ -74,10 +89,9 @@ class UserRegistration
             $this->validateUserExistence();
         }
 
-        $model = $this->save();
-        $user  = $this->buildUser();
-        
-        return $user;
+        $this->save();
+        $this->buildUser();
+        return $this->generatedUser;
     }
 
     private function validateUserExistence()
@@ -88,14 +102,14 @@ class UserRegistration
         }
     }
 
-    private function save()
+    private function save() : void
     {
         EntityManager::persist($this);
         EntityManager::flush();
     }
 
-    private function buildUser() : User
+    private function buildUser() : void
     {
-        return $this->repository->findByUsername(new Username($this->username));
+        $this->generatedUser = $this->repository->findByUsername(new Username($this->username));
     }
 }

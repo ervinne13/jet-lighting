@@ -31,9 +31,17 @@ if (!function_exists('active_if_node_route_is')) {
 
 if (!function_exists('nullable_display_date')) {
 
-    function nullable_display_date(string $baseDate = null)
+    function nullable_display_date($baseDate = null)
     {
-        return $baseDate ? with(new Carbon($baseDate))->format('m/d/Y h:i a') : '';
+        if (!$baseDate) {
+            return '';
+        }
+
+        if (is_string($baseDate)) {
+            return with(new Carbon($baseDate))->format('M d, Y h:i a');
+        } else {
+            return $baseDate->format('M d, Y h:i a');
+        }
     }
 
 }

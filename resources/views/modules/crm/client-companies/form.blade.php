@@ -27,14 +27,14 @@
                 </div>
                 <div class="ibox-footer">
                     <span class="pull-right">
-                        <button class="btn btn-primary " type="button">
+                        <button class="btn btn-primary" type="button">
                             <i class="fa fa-check"></i>
                             Create
                         </button>
 
                         <a href="{{ route($documentCloseRoute) }}" class="btn btn-w-m btn-default">
                             Close
-                        </a>                        
+                        </a>
                     </span>
                     <div class="clearfix"></div>
                 </div>

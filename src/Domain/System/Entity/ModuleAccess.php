@@ -41,7 +41,7 @@ class ModuleAccess
     public function __construct(Module $module, AccessControl $accessControl)
     {        
         $this->module = $module;
-        $this->accessControl = $accessControl->getStringVal();       
+        $this->accessControl = $accessControl->getStringVal();
     }
 
     public function setRole(Role $role)

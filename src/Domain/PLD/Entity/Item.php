@@ -5,17 +5,26 @@ namespace Jet\Domain\PLD\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 use Jet\Domain\Common\Entity\Company;
 use Jet\Domain\Common\Entity\Specification\HasMutableId;
+use Jet\Domain\PLD\Entity\SupplierCost;
 use Jet\Domain\PLD\Entity\SupplierItem;
+use Jet\Infrastructure\PLD\Entity\PersistentItem;
+use JsonSerializable;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="items")
  */
-class Item
+class Item implements JsonSerializable
 {
     use Timestamps;
-    use HasMutableId;
+    
+    /**
+     * @ORM\Id
+     * @ORM\Column(name="code", type="string")
+     * @var string
+     */
+    protected $code;    
 
     /**
      * @ORM\Column(type="string")
@@ -23,43 +32,30 @@ class Item
     private $name;
 
     /**
-     * @ORM\Column(type="string", name="part_number", nullable=true)
-     */
-    private $partNumber;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $size;
-
-    /**
      * @ORM\Column(type="string", nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="SupplierCost", mappedBy="item", cascade={"all"})
-     * @var SupplierCost
+     * @ORM\OneToMany(targetEntity="SupplierCost", mappedBy="item", cascade={"all"})    
      */
     private $supplierCosts;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ItemStockSummary", mappedBy="item")
+     */
+    private $stockSummaries;
+
     public function __construct(
+        string $code,
         string $name,
         string $description = null,
         array $supplierCosts = [],
-        PartNumber $partNumber = null,
         Size $size = null
     ) {
+        $this->code         = $code;
         $this->name         = $name;
-        $this->description  = $description;        
-
-        if ($partNumber) {
-            $this->partNumber = $partNumber->getStringVal();
-        }
-
-        if ($size) {
-            $this->size = $size->getStringVal();
-        }
+        $this->description  = $description;
 
         foreach($supplierCosts as $cost) {
             $this->addSupplierCost($cost);
@@ -76,23 +72,53 @@ class Item
         return $this->description;
     }
 
-    public function getPartNumber() : ?string
-    {
-        return $this->partNumber;
-    }
-
-    public function getSize() : ?string
-    {
-        return $this->size;
-    }
-
     public function getSupplierCosts() : array
     {
         return $this->supplierCosts;
     }
 
+    public function getLeastCostSupplier() : ?SupplierCost
+    {
+        $leastCost = null;
+        foreach ($this->supplierCosts as $supplierCost) {            
+            if (!$leastCost || $leastCost->getCost() > $supplierCost->getCost()) {
+                $leastCost = $supplierCost;
+            }
+        }
+
+        return $leastCost;
+    }
+
     private function addSupplierCost(SupplierCost $cost)
     {
         $this->supplierCosts[] = $cost->setItem($this);
+    }
+
+    public function getCode() : ?string
+    {
+        return $this->code;
+    }
+
+    public function jsonSerialize()
+    {
+        $supplierCosts = [];
+        foreach ($this->supplierCosts as $cost) {
+            $supplierCosts[] = $cost->jsonSerialize();
+        }
+
+        $onHandQty = 0;
+        if (count($this->stockSummaries) > 0) {
+            $onHandQty = $this->stockSummaries[0]->getQuantity();
+        }
+
+        return [
+            'code'              => $this->code,
+            'name'              => $this->name,
+            'description'       => $this->description,
+            'supplierCosts'     => $supplierCosts,
+            'leastCostSupplier' => $this->getLeastCostSupplier(),
+            //  TODO: make this locaiton based
+            'onHandQty'         => $onHandQty
+        ];
     }
 }

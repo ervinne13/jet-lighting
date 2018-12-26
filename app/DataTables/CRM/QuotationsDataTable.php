@@ -31,7 +31,7 @@ class QuotationsDataTable extends DataTable
     
     public function query()
     {
-        $query = DB::table('quotations')
+        $query = DB::table('quotation_headers')
                 ->select(...$this->getColumns());
         return $query;
     }

@@ -31,7 +31,7 @@ class NavigationComposer
     {
         $user = current_user();        
         $view->with('userName', $user->getName());
-        $view->with('userPosition', 'System Admin');
+        $view->with('userPosition', $user->getPrimaryRole()->getName());
         $view->with('navigation', 'all');
 
         $view->with('navigationTree', $this->navTree);

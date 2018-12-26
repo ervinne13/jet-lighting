@@ -8,7 +8,7 @@ use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="quotations")
+ * @ORM\Table(name="quotation_headers")
  */
 class Quotation
 {

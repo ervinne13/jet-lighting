@@ -1,6 +1,6 @@
 <script id="tmpl-role-view" type="text/template">
-    <div class="m-t-l"></div>
-    <h4 class="m-t-l">{%= o.name %}</h4>
+    <div class="m-t-lg"></div>
+    <h4 class="m-t-lg">{%= o.name %}</h4>
 
     <table class="table table-hover">
         <thead>

@@ -25,5 +25,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::group(['namespace' => 'CRM', 'prefix' => 'crm'], function() {
         Route::resource('client-companies', 'ClientCompanyResourceController');
         Route::resource('quotations', 'QuotationResourceController');
-    });    
+    });
+
+    Route::group(['namespace' => 'PLD', 'prefix' => 'pld'], function() {
+        Route::resource('stock-inquiries', 'StockInquiryResourceController');        
+    });
 });

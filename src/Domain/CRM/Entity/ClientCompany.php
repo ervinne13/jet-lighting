@@ -15,4 +15,6 @@ class ClientCompany extends Company
 {
     use Timestamps;
     use HasDocumentNumber;
+
+    protected $moduleCode = 'CC';
 }

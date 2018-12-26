@@ -14,23 +14,21 @@ class CreateItemsTable extends Migration
     public function up()
     {
         Schema::create('items', function (Blueprint $table) {
-            $table->string('id', 50)->primary();
+            $table->string('code', 50)->primary();
             $table->string('name', 100);
             $table->text('description')->nullable();
-            $table->string('part_number', 100)->nullable();
-            $table->string('size', 20)->nullable();
             $table->timestamps();
         });
 
         Schema::create('supplier_item_costs', function (Blueprint $table) {
             $table->string('supplier_id', 50);
-            $table->string('item_id', 50);
+            $table->string('item_code', 50);
             $table->decimal('last_purchased_unit_cost', 7, 2);
             $table->timestamps();
 
-            $table->primary(['supplier_id', 'item_id']);
+            $table->primary(['supplier_id', 'item_code']);
             $table->foreign('supplier_id')->references('id')->on('suppliers');
-            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('item_code')->references('code')->on('items');
         });
     }
 

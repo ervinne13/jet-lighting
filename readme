@@ -1,0 +1,30 @@
+TODO:
+
+For asking:
+    Request Sample
+
+Parked Development:
+    - Item Units of Measurement
+    - Locations
+
+Create Canvas 
+-> Generate Quotation Document 
+-> Send For Approval 
+
+Approved Quotation
+-> If stocks not enough
+    -> Auto generate RQ
+        -> If existing RQ for the same item, merge
+    -> Mark Quotation as awaiting stocks
+-> If stocks enough
+    -> Make "Create Invoice" Function available
+
+Requisition
+-> Select RQs
+-> Create PO
+-> CSR to updated costs appropriately
+    -> Show most recent canvass costs
+-> Wait for delivery
+-> On Deliver
+    -> Post to Receive
+        -> Mark selected RQs as Received / Partially Received

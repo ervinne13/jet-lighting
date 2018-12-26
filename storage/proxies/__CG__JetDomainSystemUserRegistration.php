@@ -64,10 +64,10 @@ class UserRegistration extends \Jet\Domain\System\UserRegistration implements \D
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'credentials', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'username', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'password', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'name', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'validatesUserExistence', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'repository', 'createdAt', 'updatedAt'];
+            return ['__isInitialized__', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'credentials', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'username', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'password', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'name', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'userRoles', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'validatesUserExistence', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'generatedUser', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'repository', 'createdAt', 'updatedAt'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'credentials', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'username', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'password', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'name', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'validatesUserExistence', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'repository', 'createdAt', 'updatedAt'];
+        return ['__isInitialized__', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'credentials', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'username', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'password', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'name', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'userRoles', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'validatesUserExistence', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'generatedUser', '' . "\0" . 'Jet\\Domain\\System\\UserRegistration' . "\0" . 'repository', 'createdAt', 'updatedAt'];
     }
 
     /**

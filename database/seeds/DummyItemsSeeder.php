@@ -4,6 +4,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Database\Seeder;
 use Jet\Domain\Common\ValueObject\Amount;
 use Jet\Domain\PLD\Entity\Item;
+use Jet\Domain\PLD\Entity\ItemStockSummary;
 use Jet\Domain\PLD\Entity\SupplierCost;
 use Jet\Domain\PLD\Service\SupplierRepository;
 
@@ -28,21 +29,76 @@ class DummyItemsSeeder extends Seeder
      */
     public function run()
     {
-        $trackingNumber = tracking_number_by_module('I');
+        $this->makeLedWrapAround();
+        $this->makeLedSecurityLightBlack();
+        $this->makeLedSecurityLightWhite();
+        $this->makeJml12V();
+        $this->makeJet5050WW();
+        
+        $this->em->flush();
+    }
 
+    private function makeLedWrapAround()
+    {
         $costs = [
             new SupplierCost($this->supplierRepo->find('S-00000002'), new Amount(350.00)),
             new SupplierCost($this->supplierRepo->find('S-00000004'), new Amount(349.00))
         ];
-        $item = new Item(
+        
+        $ledWrapAround = new Item(
+            'JT24FT-LED-W-4K',
             "4' LED Wrap Around", 
             'Contemporary design, quick installation, Surface-mounted, impact resistant prismatic acrylic lens, ideal replacement for traditional 2-light integrated LED modules.',
             $costs
         );
 
-        $item->setId($trackingNumber->commit());
-
-        $this->em->persist($item);
-        $this->em->flush();
+        $this->em->persist($ledWrapAround);
+        $this->em->persist(new ItemStockSummary($ledWrapAround, 300));
     }
+
+    private function makeLedSecurityLightBlack()
+    {
+        $ledSecurityLightBlack = new Item(
+            "JT-2-Security-BR",
+            "LED Security Light Black",
+            "LED wall pack with high bright LED chip, energy saving and pro environment lighting stable and long lifespan. Optical-grade glass lampshade. High heat conduction aluminum alloy shell, vacuum dust-free spray, anti-corrorsion, no stripping. Strict waterproof treatment technology, meet international waterproof and dustproof standards. Can three-dimensional rotatem wide rotation angle, flexible and convenient adjustment. Radiate light protection design, won't affect the lighting effects because of weather."
+        );
+
+        $this->em->persist($ledSecurityLightBlack);
+        $this->em->persist(new ItemStockSummary($ledSecurityLightBlack, 50));
+    }
+
+    private function makeLedSecurityLightWhite()
+    {
+        $ledSecurityLightWhite = new Item(
+            "JT-2-Security-WH",
+            "LED Security Light White",
+            "LED wall pack with high bright LED chip, energy saving and pro environment lighting stable and long lifespan. Optical-grade glass lampshade. High heat conduction aluminum alloy shell, vacuum dust-free spray, anti-corrorsion, no stripping. Strict waterproof treatment technology, meet international waterproof and dustproof standards. Can three-dimensional rotatem wide rotation angle, flexible and convenient adjustment. Radiate light protection design, won't affect the lighting effects because of weather."
+        );
+
+        $this->em->persist($ledSecurityLightWhite);
+    }
+
+    private function makeJml12V()
+    {
+        $jml12V = new Item(
+            "JML-303-12V",
+            "JML-303-12V",
+            "LED 1W X 3 150L 3000K Ideal in ceiling applications Perfect for use in kitchen and shelvings, cabinets, and displays Metal body May be mounted recessed Includes driver."
+        );
+
+        $this->em->persist($jml12V);
+    }
+
+    private function makeJet5050WW()
+    {        
+        $jet5050WW = new Item(
+            "JET5050WW/60/OUT",
+            "Double Side LED Tape Light",
+            "Double side LED Tape Light available on Warm White or Cool White, suitable for indoor or outdoor applications. 16.5 feet per roll."
+        );
+
+        $this->em->persist($jet5050WW);        
+    }
+
 }
