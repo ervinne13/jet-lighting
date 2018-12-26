@@ -16,4 +16,6 @@ class Supplier extends Company
     use Timestamps;
     use HasMutableId;
     
+    protected $moduleCode = 'S';
+
 }

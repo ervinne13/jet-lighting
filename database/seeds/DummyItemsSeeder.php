@@ -49,6 +49,14 @@ class DummyItemsSeeder extends Seeder
         );
 
         $this->em->persist($ledSecurityLightBlack);
+        
+        $ledSecurityLightWhite = new Item(
+            "JT-2-Security-WH",
+            "LED Security Light White",
+            "LED wall pack with high bright LED chip, energy saving and pro environment lighting stable and long lifespan. Optical-grade glass lampshade. High heat conduction aluminum alloy shell, vacuum dust-free spray, anti-corrorsion, no stripping. Strict waterproof treatment technology, meet international waterproof and dustproof standards. Can three-dimensional rotatem wide rotation angle, flexible and convenient adjustment. Radiate light protection design, won't affect the lighting effects because of weather."
+        );
+
+        $this->em->persist($ledSecurityLightWhite);        
 
         $jml12V = new Item(
             "JML-303-12V",
@@ -57,6 +65,14 @@ class DummyItemsSeeder extends Seeder
         );
 
         $this->em->persist($jml12V);
+
+        $jet5050WW = new Item(
+            "JET5050WW/60/OUT",
+            "Double Side LED Tape Light",
+            "Double side LED Tape Light available on Warm White or Cool White, suitable for indoor or outdoor applications. 16.5 feet per roll."
+        );
+
+        $this->em->persist($jet5050WW);
 
         $this->em->flush();
     }

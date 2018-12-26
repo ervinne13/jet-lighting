@@ -52,7 +52,7 @@ class User implements LaravelAuthenticatable
     }
 
     public function getUsername()
-    {
+    {        
         return $this->username;
     }
 

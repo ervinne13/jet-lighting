@@ -15,7 +15,7 @@ use Jet\Domain\System\Service\ModuleRepository;
 use Jet\Domain\System\Service\RoleRepository;
 use Jet\Domain\System\Service\TrackingNumberRepository;
 use Jet\Domain\System\Service\UserRepository;
-use Jet\Infrastructure\System\Service\ItemRepositoryDoctrineImpl;
+use Jet\Infrastructure\PLD\Service\ItemRepositoryDoctrineImpl;
 use Jet\Infrastructure\System\Service\ModuleRepositoryDoctrineImpl;
 use Jet\Infrastructure\System\Service\RoleRepositoryDoctrineImpl;
 use Jet\Infrastructure\System\Service\SupplierRepositoryDoctrineImpl;

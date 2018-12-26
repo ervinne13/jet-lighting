@@ -3,20 +3,19 @@
 namespace Jet\Domain\PLD\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
-use Jet\Domain\Common\Entity\Specification\HasMutableId;
 use Jet\Domain\PLD\Entity\Item;
 use Jet\Domain\PLD\Entity\StockInquiry;
+use Jet\Domain\PLD\ValueObject\SupplierStockCommitment;
 use JsonSerializable;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="stock_inquiry_header")
+ * @ORM\Table(name="stock_inquiry_details")
  */
-class StockInquiryDetails implements JsonSerializable
+class StockInquiryDetail implements JsonSerializable
 {
     use Timestamps;
-    use HasMutableId;
 
     /**
      * @ORM\Id
@@ -28,7 +27,7 @@ class StockInquiryDetails implements JsonSerializable
 
     /**
      * @ORM\Id
-     * @ORM\OneToOne(targetEntity="Item")
+     * @ORM\ManyToOne(targetEntity="Item")
      * @ORM\JoinColumn(name="item_code", referencedColumnName="code")
      * @var Item
      */
@@ -40,13 +39,13 @@ class StockInquiryDetails implements JsonSerializable
     private $neededQuantity;
 
     /**
-     * @ORM\Column(type="integer", name="on__hand_quantity")
+     * @ORM\Column(type="integer", name="on_hand_quantity")
      */
     private $onHandQuantity;
 
     /**    
-     * @ORM\OneToOne(targetEntity="Supplier")
-     * @ORM\JoinColumn(name="supplier_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Supplier")
+     * @ORM\JoinColumn(name="supplier_id", referencedColumnName="id", nullable=true)
      * @var Supplier
      */
     private $supplier;
@@ -81,6 +80,31 @@ class StockInquiryDetails implements JsonSerializable
         }
     }
 
+    public function getStatus()
+    {
+        $commitedQty = $this->onHandQuantity + $this->supplierQuantity;
+        if ($this->neededQuantity > $commitedQty) {
+            return 'Incomplete / Out of Stock';
+        } else if ($this->onHandQuantity > 0 && $this->supplierQuantity > 0) {
+            return 'Partially Commited By Supplier';
+        } else if ($this->onHandQuantity <= 0 && $this->supplierQuantity > 0) {
+            return 'Commited By Supplier';
+        } else {
+            return 'In Stock';
+        }
+    }
+
+    public function getHeader()
+    {
+        return $this->header;
+    }
+
+    public function setHeader(StockInquiry $header)
+    {
+        $this->header = $header;
+        return $this;
+    }
+
     public function jsonSerialize()
     {
         return [
@@ -90,6 +114,8 @@ class StockInquiryDetails implements JsonSerializable
             'supplier'          => $this->supplier,
             'supplierQuantity'  => $this->supplierQuantity,
             'supplierUnitCost'  => $this->supplierUnitCost,
+            'status'            => $this->getStatus()
         ];
     }
+
 }

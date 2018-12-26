@@ -1,6 +1,6 @@
 <?php
 
-namespace Jet\Infrastructure\System\Service;
+namespace Jet\Infrastructure\PLD\Service;
 
 use Doctrine\ORM\EntityRepository;
 use Jet\Domain\PLD\Entity\Item;

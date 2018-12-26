@@ -21,8 +21,6 @@ class DummySuppliersSeeder extends Seeder
      */
     public function run()
     {
-        $trackingNumber = tracking_number_by_module('S');
-        
         for ($i = 1; $i < 5; $i ++) {
             $builder = new CompanyBasedEntityBuilder();
             $builder
@@ -33,10 +31,7 @@ class DummySuppliersSeeder extends Seeder
                 ->withEmailAddress("dummy@supplier{$i}.com");
     
             $supplier = $builder->buildSupplier();
-            $supplier->setId($trackingNumber->commit());
-    
-            $this->em->persist($trackingNumber);
-            $this->em->persist($supplier);
+            $supplier->commitAndPersist($this->em);
         }
       
         $this->em->flush();

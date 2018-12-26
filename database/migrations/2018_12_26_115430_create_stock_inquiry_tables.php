@@ -13,7 +13,7 @@ class CreateStockInquiryTables extends Migration
      */
     public function up()
     {
-        Schema::create('stock_inquiry_header', function (Blueprint $table) {
+        Schema::create('stock_inquiry_headers', function (Blueprint $table) {
             $table->string('document_number', 50)->primary();
             $table->string('created_by_username', 100); //  do not create foreign key to avoid cascade deletes
             $table->text('purpose')->nullable();
@@ -45,6 +45,6 @@ class CreateStockInquiryTables extends Migration
     public function down()
     {
         Schema::dropIfExists('stock_inquiry_details');
-        Schema::dropIfExists('stock_inquiry_header');
+        Schema::dropIfExists('stock_inquiry_headers');
     }
 }

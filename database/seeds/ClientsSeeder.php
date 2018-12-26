@@ -21,8 +21,6 @@ class ClientsSeeder extends Seeder
      */
     public function run()
     {
-        $trackingNumber = tracking_number_by_module('CC');
-        
         $builder = new CompanyBasedEntityBuilder();
         $builder
             ->withName('CRC REALTY DEVELOPMENT CORPORATION')
@@ -32,10 +30,7 @@ class ClientsSeeder extends Seeder
             ->withEmailAddress('contact@crc-dev.com');
 
         $client = $builder->buildClientCompany();
-        $client->setDocumentNumber($trackingNumber->commit());
-
-        $this->em->persist($trackingNumber);
-        $this->em->persist($client);
+        $client->commitAndPersist($this->em);
         $this->em->flush();
     }
 }
