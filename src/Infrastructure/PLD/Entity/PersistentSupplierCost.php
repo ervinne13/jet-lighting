@@ -1,6 +1,6 @@
 <?php
 
-namespace Jet\Domain\PLD\Entity;
+namespace Jet\Infrastructure\PLD\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
 use Jet\Domain\Common\ValueObject\Amount;
@@ -13,7 +13,7 @@ use LaravelDoctrine\Extensions\Timestamps\Timestamps;
  * @ORM\Entity
  * @ORM\Table(name="supplier_item_costs")
  */
-class SupplierCost implements JsonSerializable
+class PersistentSupplierCost implements JsonSerializable
 {
     use Timestamps;
     
@@ -59,14 +59,6 @@ class SupplierCost implements JsonSerializable
     public function getLastPurchasedUnitCost() : float
     {
         return $this->lastPurchasedUnitCost;
-    }
-
-    /**
-     * Alias
-     */
-    public function getCost() : float
-    {
-        return $this->getLastPurchasedUnitCost();
     }
 
     public function getSupplier() : Supplier

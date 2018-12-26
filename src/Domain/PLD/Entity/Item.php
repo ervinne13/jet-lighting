@@ -5,7 +5,9 @@ namespace Jet\Domain\PLD\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 use Jet\Domain\Common\Entity\Company;
 use Jet\Domain\Common\Entity\Specification\HasMutableId;
+use Jet\Domain\PLD\Entity\SupplierCost;
 use Jet\Domain\PLD\Entity\SupplierItem;
+use Jet\Infrastructure\PLD\Entity\PersistentItem;
 use JsonSerializable;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 
@@ -39,6 +41,11 @@ class Item implements JsonSerializable
      */
     private $supplierCosts;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ItemStockSummary", mappedBy="item")
+     */
+    private $stockSummaries;
+
     public function __construct(
         string $code,
         string $name,
@@ -70,6 +77,18 @@ class Item implements JsonSerializable
         return $this->supplierCosts;
     }
 
+    public function getLeastCostSupplier() : ?SupplierCost
+    {
+        $leastCost = null;
+        foreach ($this->supplierCosts as $supplierCost) {            
+            if (!$leastCost || $leastCost->getCost() > $supplierCost->getCost()) {
+                $leastCost = $supplierCost;
+            }
+        }
+
+        return $leastCost;
+    }
+
     private function addSupplierCost(SupplierCost $cost)
     {
         $this->supplierCosts[] = $cost->setItem($this);
@@ -87,11 +106,19 @@ class Item implements JsonSerializable
             $supplierCosts[] = $cost->jsonSerialize();
         }
 
+        $onHandQty = 0;
+        if (count($this->stockSummaries) > 0) {
+            $onHandQty = $this->stockSummaries[0]->getQuantity();
+        }
+
         return [
-            'code'          => $this->code,
-            'name'          => $this->name,
-            'description'   => $this->description,
-            'supplierCosts' => $supplierCosts,
+            'code'              => $this->code,
+            'name'              => $this->name,
+            'description'       => $this->description,
+            'supplierCosts'     => $supplierCosts,
+            'leastCostSupplier' => $this->getLeastCostSupplier(),
+            //  TODO: make this locaiton based
+            'onHandQty'         => $onHandQty
         ];
     }
 }

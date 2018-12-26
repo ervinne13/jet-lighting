@@ -14,8 +14,9 @@
 
     <div class="col-lg-6">
         <div class="form-group">
-            <label>Created By</label> 
+            <label>Checked By</label> 
             <h4 class="text-navy">{{ $inquiry->getCreatedBy()->getName() }}</h4>
+            <span>{{ nullable_display_date($inquiry->getCreatedAt()) }}</span>
         </div>
     </div>
 </div>

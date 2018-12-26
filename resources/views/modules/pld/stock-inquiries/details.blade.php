@@ -1,19 +1,5 @@
 
-<div class="row">
-
-    <div class="col-md-12">
-        <strong>Details</strong>
-
-        <div class="pull-right">
-            <button action="create-detail" class="btn btn-info btn-rounded btn-sm">
-                <i class="fa fa-plus"></i> Create Inquiry Item
-            </button>
-        </div>
-    </div>
-
-</div>
-
-<table class="table table-hover">
+<table class="table table-hover editable-table-rows">
     <thead>
         <tr>
             <th>Item Code</th>
@@ -27,5 +13,16 @@
     <tbody id="detail-rows-container">
         
     </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="6">
+                <div class="text-center">
+                    <button action="create-row" class="btn btn-info btn-rounded btn-sm">
+                        <i class="fa fa-plus"></i> Create Inquiry Item
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
 </table>
 

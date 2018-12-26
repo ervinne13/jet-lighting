@@ -1,5 +1,5 @@
 <script id="tmpl-detail-row" type="text/template">
-    <tr class="selectable">
+    <tr class="selectable" data-id={%= o.item.code %}>
         <td>{%= o.item.code %}</td>
         <td>{%= o.item.code %}</td>
         <td>{%= o.neededQuantity %}</td>

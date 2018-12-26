@@ -6,12 +6,15 @@
 @section('title', 'Inquire Item Stocks')
 
 @section('js')
+<script src="{!! asset('js/app/item-selection.js') !!}" type="text/javascript"></script>
 <script src="{!! asset('js/app/modules/pld/stock-inquiries/detail-form.js') !!}" type="text/javascript"></script>
 <script src="{!! asset('js/app/modules/pld/stock-inquiries/detail-table.js') !!}" type="text/javascript"></script>
 <script src="{!! asset('js/app/modules/pld/stock-inquiries/form-page.js') !!}" type="text/javascript"></script>
 
 <script type="text/javascript">
-$(document).ready(function() {        
+$(document).ready(function() {
+    ItemSelection.init(@json($items));
+    DetailForm.init(@json($suppliers), ItemSelection);
     FormPage.init(@json($inquiry), DetailTable, DetailForm);
 });
 </script>
@@ -20,6 +23,7 @@ $(document).ready(function() {
 @section('content')
 
 @include('modules.pld.stock-inquiries.templates.detail-row')
+@include('modules.pld.stock-inquiries.templates.detail-form')
 
 <div class="wrapper wrapper-content  animated fadeInRight">
     <div class="row">
@@ -33,7 +37,7 @@ $(document).ready(function() {
                     @include('modules.pld.stock-inquiries.details')          
                 </div>
                 <div class="ibox-footer">
-                    <div class="pull-right m-t-lg">
+                    <div class="pull-right">
                         <button action="save" class="btn btn-primary">
                             Create Inquiry
                         </button>
@@ -46,6 +50,8 @@ $(document).ready(function() {
                             Close
                         </a>
                     </div>
+
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </div>

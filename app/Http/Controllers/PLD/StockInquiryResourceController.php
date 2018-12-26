@@ -18,9 +18,20 @@ class StockInquiryResourceController extends Controller
     /** @var EntityManagerInterface */
     private $em;
 
-    public function __construct(EntityManagerInterface $em)
-    {
+    /** @var ItemRepository */
+    private $itemRepository;
+
+    /** @var SupplierRepository */
+    private $supplierRepository;
+
+    public function __construct(
+        EntityManagerInterface $em, 
+        ItemRepository $itemRepository,
+        SupplierRepository $supplierRepository
+    ) {
         $this->em = $em;
+        $this->itemRepository = $itemRepository;
+        $this->supplierRepository = $supplierRepository;
     }
 
     /**
@@ -43,9 +54,14 @@ class StockInquiryResourceController extends Controller
         $isi = $this->createDummyInquiry();
         $commitedDocNo = $isi->commitAndPersist($this->em);
 
+        $items = $this->itemRepository->findAll();
+        $suppliers = $this->supplierRepository->findAll();
+
         return view('modules.pld.stock-inquiries.form', [
             'documentCloseRoute' => 'stock-inquiries.index',
-            'inquiry'            => $isi
+            'inquiry'            => $isi,
+            'items'              => $items,
+            'suppliers'          => $suppliers
         ]);
     }
 
@@ -90,7 +106,8 @@ class StockInquiryResourceController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $this->em->persist($isi);
+        // $this->em->flush();
     }
 
     /**

@@ -13,7 +13,7 @@ class CreateItemStockSummaryTable extends Migration
      */
     public function up()
     {
-        Schema::create('item_stock_summary', function (Blueprint $table) {
+        Schema::create('item_stock_summaries', function (Blueprint $table) {
             $table->string('item_code', 50)->primary();            
             //  TODO: Location
             $table->integer('quantity')->unsigned();            
@@ -29,6 +29,6 @@ class CreateItemStockSummaryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_stock_summary');
+        Schema::dropIfExists('item_stock_summaries');
     }
 }
