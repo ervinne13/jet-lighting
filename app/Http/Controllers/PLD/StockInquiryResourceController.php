@@ -40,9 +40,8 @@ class StockInquiryResourceController extends Controller
      */
     public function create()
     {
-        $isi = $this->createDummyInquiry();        
-        $isi->commitAndPersist($this->em);
-        $this->em->flush();
+        $isi = $this->createDummyInquiry();
+        $commitedDocNo = $isi->commitAndPersist($this->em);
 
         return view('modules.pld.stock-inquiries.form', [
             'documentCloseRoute' => 'stock-inquiries.index',
@@ -58,7 +57,18 @@ class StockInquiryResourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //  $isi = $request->toStockInquiry();
+        $reservedDocNo = $isi->getDocumentNumber();
+        $isi = $this->createDummyInquiry();        
+        $commitedDocNo = $isi->commitAndPersist($this->em);
+        $this->em->flush();
+
+        $msg = ['message' => "Document {$reservedDocNo} Saved."];
+        if ($reservedDocNo != $commitedDocNo) {
+            $msg['message'] = "{$reservedDocNo} was used in a different document while you were editing. This document is saved as {$commitedDocNo} instead.";
+        }
+
+        return response()->json($msg);
     }
 
     /**
