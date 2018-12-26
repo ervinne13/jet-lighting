@@ -8,7 +8,7 @@
                 <p>Roles are named access control lists against the system modules. Each role may be assigned to any user.</p>
                 <p>A role may have viewer, author, or manager access to many modules.</p>
 
-                <ul class="text-left m-t-l">
+                <ul class="text-left m-t-lg">
                     <li>
                         <strong>Viewers</strong> can view documents in the module, but cannot edit or delete any of them. They cannot create documents. This role is usually for auditors.
                     </li>

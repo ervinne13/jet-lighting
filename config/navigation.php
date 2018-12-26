@@ -20,14 +20,32 @@ return [
     ],
     [                
         'icon_class'    => 'fa fa-users', 
-        'text'          => 'Client Companies',
-        'module'        => 'CC',
-        'route'         => 'client-companies.index'
+        'text'          => 'CRM',
+        'children'      => [
+            [                
+                'icon_class'    => 'fa fa-users', 
+                'text'          => 'Client Companies',
+                'module'        => 'CC',
+                'route'         => 'client-companies.index'
+            ],
+            [                
+                'icon_class'    => 'fa fa-address-card', 
+                'text'          => 'Quotations',
+                'module'        => 'CQ',
+                'route'         => 'quotations.index'
+            ],
+        ]
     ],
     [                
-        'icon_class'    => 'fa fa-address-card', 
-        'text'          => 'Quotations',
-        'module'        => 'CQ',
-        'route'         => 'quotations.index'
+        'icon_class'    => 'fa fa-truck', 
+        'text'          => 'PLD',
+        'children'      => [
+            [                
+                'icon_class'    => 'fa fa-list', 
+                'text'          => 'Item Management',
+                'module'        => 'I',
+                'route'         => 'client-companies.index'
+            ],
+        ]
     ],
 ];

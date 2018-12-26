@@ -28,7 +28,9 @@ return [
             'namespaces'    => [],
             'paths'         => [
                 base_path('src/Domain/System'),
-                base_path('src/Domain/System/Entity')
+                base_path('src/Domain/System/Entity'),
+                base_path('src/Domain/CRM/Entity'),
+                base_path('src/Domain/PLD/Entity'),
             ],
             'repository'    => Doctrine\ORM\EntityRepository::class,
             'proxies'       => [

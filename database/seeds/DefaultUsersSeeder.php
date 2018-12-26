@@ -34,7 +34,7 @@ class DefaultUsersSeeder extends Seeder
         $role = $this->roleRepository->findByName('Administrator');
 
         $registration = $this->registrationBuilder
-            ->withDisplayName('Administrator')
+            ->withDisplayName('Saul Goodman')
             ->withUsername('administrator')
             ->withPassword(')GUEo5875IJ("^X')
             ->withRepeatPassword(')GUEo5875IJ("^X')
@@ -50,7 +50,7 @@ class DefaultUsersSeeder extends Seeder
         $role = $this->roleRepository->findByName('CSR Officer');
 
         $registration = $this->registrationBuilder
-            ->withDisplayName('CSR Officer')
+            ->withDisplayName('Walter White')
             ->withUsername('csrofficer')
             ->withPassword('Secret!3')
             ->withRepeatPassword('Secret!3')
@@ -66,7 +66,7 @@ class DefaultUsersSeeder extends Seeder
         $role = $this->roleRepository->findByName('Sales Officer');
 
         $registration = $this->registrationBuilder
-            ->withDisplayName('Sales Officer')
+            ->withDisplayName('Gus Fring')
             ->withUsername('salesofficer')
             ->withPassword('Secret!3')
             ->withRepeatPassword('Secret!3')

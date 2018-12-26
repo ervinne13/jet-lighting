@@ -13,7 +13,7 @@ trait HasMutableId
 
     public function getId() : ?string
     {
-        return $this->documentNumber;
+        return $this->id;
     }
 
     public function setId(string $id)

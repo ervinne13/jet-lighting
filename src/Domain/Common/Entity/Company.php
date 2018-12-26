@@ -3,8 +3,9 @@
 namespace Jet\Domain\Common\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
+use JsonSerializable;
 
-class Company
+class Company implements JsonSerializable
 {
 
     /**
@@ -69,5 +70,16 @@ class Company
     public function getEmailAddress() : string
     {
         return $this->emailAddress;
+    }
+
+    public function jsonSerialize() 
+    {
+        return [
+            'name'          => $this->name,
+            'address'       => $this->address,
+            'contactPerson' => $this->contactPerson,
+            'contactNumber' => $this->contactNumber,
+            'emailAddress'  => $this->emailAddress
+        ];
     }
 }

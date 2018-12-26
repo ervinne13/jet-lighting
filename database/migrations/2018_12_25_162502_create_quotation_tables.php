@@ -15,13 +15,14 @@ class CreateQuotationTables extends Migration
     {
         Schema::create('quotation_headers', function (Blueprint $table) {
             $table->string('document_number', 50)->primary();
+            $table->string('created_by_username', 100); //  do not create foreign key to avoid cascade deletes
             $table->string('name', 100);
             $table->text('address');
             $table->string('contact_person', 100);
             $table->string('contact_number', 20);
             $table->string('email_address', 100);
-            $table->string('ref_client_tracking_number', 50)->nullable();
-            $table->timestamps();
+            $table->string('ref_client_document_number', 50)->nullable();
+            $table->timestamps();            
         });
     }
 

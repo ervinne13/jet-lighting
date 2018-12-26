@@ -4,6 +4,7 @@ namespace Tests\Unit\Domain\System\User;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Artisan;
+use Jet\Domain\System\Entity\Role;
 use Jet\Domain\System\Entity\User;
 use Jet\Domain\System\Exception\RegistrationFailedException;
 use Jet\Domain\System\Service\Builder\RegistrationBuilder;
@@ -11,10 +12,11 @@ use Jet\Domain\System\Service\UserRepository;
 use Jet\Domain\System\ValueObject\Credentials;
 use Jet\Domain\System\ValueObject\MatchingPasswords;
 use Jet\Domain\System\ValueObject\Username;
+use LaravelDoctrine\ORM\Facades\EntityManager;
 use Tests\RefreshDoctrineDatabase;
 use Tests\TestCase;
 
-class RegistrationTest extends TestCase
+class RegistrationUnitTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -45,12 +47,16 @@ class RegistrationTest extends TestCase
      */
     public function it_can_register_users_with_valid_properties()
     {
+        $role = new Role('dummy role');
+        EntityManager::persist($role);
+
         $builder = new RegistrationBuilder();
         $registration = $builder
                 ->withDisplayName('Ervinne Sodusta')
                 ->withUsername('ervinne13')
                 ->withPassword('Secret!23')
                 ->withRepeatPassword('Secret!23')
+                ->withRole($role)
                 ->build();
 
         $registration->execute();
@@ -66,12 +72,16 @@ class RegistrationTest extends TestCase
      */
     public function it_fails_to_register_existing_user()
     {
+        $role = new Role('dummy role');
+        EntityManager::persist($role);
+
         $builder = new RegistrationBuilder();
         $registration = $builder
                 ->withDisplayName('Ervinne Sodusta')
                 ->withUsername('ervinne13')
                 ->withPassword('Secret!23')
                 ->withRepeatPassword('Secret!23')
+                ->withRole($role)
                 ->build();
 
         $registration->execute();

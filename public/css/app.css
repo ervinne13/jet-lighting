@@ -3,14 +3,10 @@
     min-height: 400px;
 }
 
-.m-t-l {
-    margin-top: 30px;
+.selectable {
+    cursor: pointer;
 }
 
-.m-t-m {
-    margin-top: 20px;
-}
-
-.m-t-s {
-    margin-top: 10px;
+tr.selected {
+    background-color: #f5f5f5;
 }
