@@ -64,10 +64,10 @@ class Item extends \Jet\Domain\PLD\Entity\Item implements \Doctrine\ORM\Proxy\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'code', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'name', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'description', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'supplierCosts', 'createdAt', 'updatedAt'];
+            return ['__isInitialized__', 'code', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'name', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'description', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'supplierCosts', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'stockSummaries', 'createdAt', 'updatedAt'];
         }
 
-        return ['__isInitialized__', 'code', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'name', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'description', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'supplierCosts', 'createdAt', 'updatedAt'];
+        return ['__isInitialized__', 'code', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'name', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'description', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'supplierCosts', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\Item' . "\0" . 'stockSummaries', 'createdAt', 'updatedAt'];
     }
 
     /**
@@ -204,6 +204,17 @@ class Item extends \Jet\Domain\PLD\Entity\Item implements \Doctrine\ORM\Proxy\Pr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSupplierCosts', []);
 
         return parent::getSupplierCosts();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLeastCostSupplier(): ?\Jet\Domain\PLD\Entity\SupplierCost
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLeastCostSupplier', []);
+
+        return parent::getLeastCostSupplier();
     }
 
     /**

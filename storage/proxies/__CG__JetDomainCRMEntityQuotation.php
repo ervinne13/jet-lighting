@@ -64,10 +64,10 @@ class Quotation extends \Jet\Domain\CRM\Entity\Quotation implements \Doctrine\OR
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'name', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'address', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'contactPerson', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'contactNumber', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'emailAddress', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'refClientTrackingNumber', 'createdAt', 'updatedAt', 'documentNumber'];
+            return ['__isInitialized__', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'name', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'address', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'contactPerson', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'contactNumber', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'emailAddress', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'refClientTrackingNumber', 'createdAt', 'updatedAt', 'documentNumber', 'trackingNumber'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'name', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'address', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'contactPerson', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'contactNumber', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'emailAddress', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'refClientTrackingNumber', 'createdAt', 'updatedAt', 'documentNumber'];
+        return ['__isInitialized__', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'name', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'address', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'contactPerson', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'contactNumber', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'emailAddress', '' . "\0" . 'Jet\\Domain\\CRM\\Entity\\Quotation' . "\0" . 'refClientTrackingNumber', 'createdAt', 'updatedAt', 'documentNumber', 'trackingNumber'];
     }
 
     /**
@@ -297,12 +297,45 @@ class Quotation extends \Jet\Domain\CRM\Entity\Quotation implements \Doctrine\OR
     /**
      * {@inheritDoc}
      */
-    public function setDocumentNumber(string $documentNumber)
+    public function reserveDocumentNumber(): void
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDocumentNumber', [$documentNumber]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'reserveDocumentNumber', []);
 
-        return parent::setDocumentNumber($documentNumber);
+        parent::reserveDocumentNumber();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function refreshDocumentNumber(): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'refreshDocumentNumber', []);
+
+        parent::refreshDocumentNumber();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function commitAndPersist(\Doctrine\ORM\EntityManagerInterface $em): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'commitAndPersist', [$em]);
+
+        return parent::commitAndPersist($em);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTrackingNumber(): \Jet\Domain\System\Entity\TrackingNumber
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTrackingNumber', []);
+
+        return parent::getTrackingNumber();
     }
 
 }

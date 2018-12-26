@@ -64,10 +64,10 @@ class ClientCompany extends \Jet\Domain\CRM\Entity\ClientCompany implements \Doc
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'name', 'address', 'contactPerson', 'contactNumber', 'emailAddress', 'createdAt', 'updatedAt', 'documentNumber'];
+            return ['__isInitialized__', 'moduleCode', 'name', 'address', 'contactPerson', 'contactNumber', 'emailAddress', 'createdAt', 'updatedAt', 'documentNumber', 'trackingNumber'];
         }
 
-        return ['__isInitialized__', 'name', 'address', 'contactPerson', 'contactNumber', 'emailAddress', 'createdAt', 'updatedAt', 'documentNumber'];
+        return ['__isInitialized__', 'moduleCode', 'name', 'address', 'contactPerson', 'contactNumber', 'emailAddress', 'createdAt', 'updatedAt', 'documentNumber', 'trackingNumber'];
     }
 
     /**
@@ -297,12 +297,45 @@ class ClientCompany extends \Jet\Domain\CRM\Entity\ClientCompany implements \Doc
     /**
      * {@inheritDoc}
      */
-    public function setDocumentNumber(string $documentNumber)
+    public function reserveDocumentNumber(): void
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDocumentNumber', [$documentNumber]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'reserveDocumentNumber', []);
 
-        return parent::setDocumentNumber($documentNumber);
+        parent::reserveDocumentNumber();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function refreshDocumentNumber(): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'refreshDocumentNumber', []);
+
+        parent::refreshDocumentNumber();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function commitAndPersist(\Doctrine\ORM\EntityManagerInterface $em): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'commitAndPersist', [$em]);
+
+        return parent::commitAndPersist($em);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTrackingNumber(): \Jet\Domain\System\Entity\TrackingNumber
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTrackingNumber', []);
+
+        return parent::getTrackingNumber();
     }
 
 }

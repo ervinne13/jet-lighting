@@ -64,10 +64,10 @@ class Supplier extends \Jet\Domain\PLD\Entity\Supplier implements \Doctrine\ORM\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'name', 'address', 'contactPerson', 'contactNumber', 'emailAddress', 'createdAt', 'updatedAt', 'id'];
+            return ['__isInitialized__', 'moduleCode', 'name', 'address', 'contactPerson', 'contactNumber', 'emailAddress', 'createdAt', 'updatedAt', 'id', 'trackingNumber'];
         }
 
-        return ['__isInitialized__', 'name', 'address', 'contactPerson', 'contactNumber', 'emailAddress', 'createdAt', 'updatedAt', 'id'];
+        return ['__isInitialized__', 'moduleCode', 'name', 'address', 'contactPerson', 'contactNumber', 'emailAddress', 'createdAt', 'updatedAt', 'id', 'trackingNumber'];
     }
 
     /**
@@ -297,12 +297,45 @@ class Supplier extends \Jet\Domain\PLD\Entity\Supplier implements \Doctrine\ORM\
     /**
      * {@inheritDoc}
      */
-    public function setId(string $id)
+    public function reserveId(): void
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setId', [$id]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'reserveId', []);
 
-        return parent::setId($id);
+        parent::reserveId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function refreshId(): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'refreshId', []);
+
+        parent::refreshId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function commitAndPersist(\Doctrine\ORM\EntityManagerInterface $em): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'commitAndPersist', [$em]);
+
+        return parent::commitAndPersist($em);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTrackingNumber(): \Jet\Domain\System\Entity\TrackingNumber
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTrackingNumber', []);
+
+        return parent::getTrackingNumber();
     }
 
 }

@@ -64,10 +64,10 @@ class StockInquiry extends \Jet\Domain\PLD\Entity\StockInquiry implements \Doctr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\StockInquiry' . "\0" . 'purpose', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\StockInquiry' . "\0" . 'details', 'createdAt', 'updatedAt', 'documentNumber'];
+            return ['__isInitialized__', 'moduleCode', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\StockInquiry' . "\0" . 'purpose', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\StockInquiry' . "\0" . 'details', 'createdAt', 'updatedAt', 'documentNumber', 'trackingNumber', 'createdByUsername', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\StockInquiry' . "\0" . 'createdBy'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\StockInquiry' . "\0" . 'purpose', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\StockInquiry' . "\0" . 'details', 'createdAt', 'updatedAt', 'documentNumber'];
+        return ['__isInitialized__', 'moduleCode', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\StockInquiry' . "\0" . 'purpose', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\StockInquiry' . "\0" . 'details', 'createdAt', 'updatedAt', 'documentNumber', 'trackingNumber', 'createdByUsername', '' . "\0" . 'Jet\\Domain\\PLD\\Entity\\StockInquiry' . "\0" . 'createdBy'];
     }
 
     /**
@@ -187,12 +187,23 @@ class StockInquiry extends \Jet\Domain\PLD\Entity\StockInquiry implements \Doctr
     /**
      * {@inheritDoc}
      */
-    public function getDetails(): array
+    public function getDetails(): \Doctrine\Common\Collections\Collection
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDetails', []);
 
         return parent::getDetails();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addDetail(\Jet\Domain\PLD\Entity\StockInquiryDetail $stockInquiryDetail)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addDetail', [$stockInquiryDetail]);
+
+        return parent::addDetail($stockInquiryDetail);
     }
 
     /**
@@ -264,12 +275,56 @@ class StockInquiry extends \Jet\Domain\PLD\Entity\StockInquiry implements \Doctr
     /**
      * {@inheritDoc}
      */
-    public function setDocumentNumber(string $documentNumber)
+    public function reserveDocumentNumber(): void
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDocumentNumber', [$documentNumber]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'reserveDocumentNumber', []);
 
-        return parent::setDocumentNumber($documentNumber);
+        parent::reserveDocumentNumber();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function refreshDocumentNumber(): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'refreshDocumentNumber', []);
+
+        parent::refreshDocumentNumber();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function commitAndPersist(\Doctrine\ORM\EntityManagerInterface $em): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'commitAndPersist', [$em]);
+
+        return parent::commitAndPersist($em);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTrackingNumber(): \Jet\Domain\System\Entity\TrackingNumber
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTrackingNumber', []);
+
+        return parent::getTrackingNumber();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreatedBy(): \Jet\Domain\System\Entity\User
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreatedBy', []);
+
+        return parent::getCreatedBy();
     }
 
 }

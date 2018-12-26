@@ -198,6 +198,21 @@ class User extends \Jet\Domain\System\Entity\User implements \Doctrine\ORM\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getUsername()
+    {
+        if ($this->__isInitialized__ === false) {
+            return  parent::getUsername();
+        }
+
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUsername', []);
+
+        return parent::getUsername();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getName()
     {
 
