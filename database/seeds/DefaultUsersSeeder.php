@@ -27,6 +27,7 @@ class DefaultUsersSeeder extends Seeder
     {        
         $this->makeAdmin();
         $this->makeCSR();
+        $this->makeSales();
     }
 
     private function makeAdmin()
