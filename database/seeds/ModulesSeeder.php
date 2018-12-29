@@ -27,7 +27,7 @@ class ModulesSeeder extends Seeder
             ['U', 'User Management'],
             ['R', 'Role Management'],
             ['TN', 'Tracking Number Management'],
-            ['CC', 'Client Company Management'],
+            ['C', 'Client/Lead Management'],
             ['S', 'Supplier Management'],
             ['I', 'Item Management'],
             ['ISI', 'Item Stock Inquiry'],

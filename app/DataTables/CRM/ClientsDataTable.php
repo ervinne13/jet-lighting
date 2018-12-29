@@ -5,7 +5,7 @@ namespace App\DataTables\CRM;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Services\DataTable;
 
-class ClientCompaniesDataTable extends DataTable
+class ClientsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -22,7 +22,7 @@ class ClientCompaniesDataTable extends DataTable
             ->addColumn('action', function($model) {
                 return view('lib.datatable.static-actions', [
                     'id'    => $model->document_number,
-                    'route' => '/crm/client-companies'
+                    'route' => '/crm/clients'
                 ]);
             })
             ->rawColumns(['is_active', 'action']);
@@ -31,7 +31,7 @@ class ClientCompaniesDataTable extends DataTable
     
     public function query()
     {
-        $query = DB::table('client_companies')
+        $query = DB::table('clients')
                 ->select(...$this->getColumns());
         return $query;
     }
@@ -73,6 +73,6 @@ class ClientCompaniesDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'ClientCompanies_' . date('YmdHis');
+        return 'Clients_' . date('YmdHis');
     }
 }

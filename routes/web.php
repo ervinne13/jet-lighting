@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth']], function() {
     });    
 
     Route::group(['namespace' => 'CRM', 'prefix' => 'crm'], function() {
-        Route::resource('client-companies', 'ClientCompanyResourceController');
+        Route::resource('clients', 'ClientResourceController');
         Route::resource('quotations', 'QuotationResourceController');
     });
 

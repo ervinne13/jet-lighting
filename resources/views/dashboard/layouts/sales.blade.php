@@ -83,15 +83,15 @@
                                         <td>Inceptos Hymenaeos Ltd</td>                                        
                                         <td>Dec 24, 2018 04:47 am</td>
                                         <td>
-                                            <a href="http://jet-lighting.local/crm/client-companies/CC-00000001" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/client-companies" class="action-view" data-container="body" data-toggle="tooltip" data-placement="top" title="View">
+                                            <a href="http://jet-lighting.local/crm/clients/CC-00000001" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/clients" class="action-view" data-container="body" data-toggle="tooltip" data-placement="top" title="View">
                                                 <span class="fa fa-search"></span>
                                             </a>
 
-                                            <a href="http://jet-lighting.local/crm/client-companies/CC-00000001/edit" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/client-companies" class="action-edit" data-container="body" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <a href="http://jet-lighting.local/crm/clients/CC-00000001/edit" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/clients" class="action-edit" data-container="body" data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <span class="fa fa-pencil"></span>
                                             </a>
 
-                                            <a href="javascript:void(0)" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/client-companies" class="action-delete" data-container="body" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <a href="javascript:void(0)" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/clients" class="action-delete" data-container="body" data-toggle="tooltip" data-placement="top" title="Delete">
                                                 <span class="fa fa-times"></span>
                                             </a>
                                         </td>
@@ -104,15 +104,15 @@
                                         <td>Nec Euismod In Company</td>                                        
                                         <td>Dec 23, 2018 02:47 am</td>
                                         <td>
-                                            <a href="http://jet-lighting.local/crm/client-companies/CC-00000001" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/client-companies" class="action-view" data-container="body" data-toggle="tooltip" data-placement="top" title="View">
+                                            <a href="http://jet-lighting.local/crm/clients/CC-00000001" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/clients" class="action-view" data-container="body" data-toggle="tooltip" data-placement="top" title="View">
                                                 <span class="fa fa-search"></span>
                                             </a>
 
-                                            <a href="http://jet-lighting.local/crm/client-companies/CC-00000001/edit" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/client-companies" class="action-edit" data-container="body" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <a href="http://jet-lighting.local/crm/clients/CC-00000001/edit" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/clients" class="action-edit" data-container="body" data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <span class="fa fa-pencil"></span>
                                             </a>
 
-                                            <a href="javascript:void(0)" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/client-companies" class="action-delete" data-container="body" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <a href="javascript:void(0)" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/clients" class="action-delete" data-container="body" data-toggle="tooltip" data-placement="top" title="Delete">
                                                 <span class="fa fa-times"></span>
                                             </a>
                                         </td>
@@ -125,15 +125,15 @@
                                         <td>Erat Volutpat</td>
                                         <td>Dec 23, 2018 01:24 am</td>
                                         <td>
-                                            <a href="http://jet-lighting.local/crm/client-companies/CC-00000001" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/client-companies" class="action-view" data-container="body" data-toggle="tooltip" data-placement="top" title="View">
+                                            <a href="http://jet-lighting.local/crm/clients/CC-00000001" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/clients" class="action-view" data-container="body" data-toggle="tooltip" data-placement="top" title="View">
                                                 <span class="fa fa-search"></span>
                                             </a>
 
-                                            <a href="http://jet-lighting.local/crm/client-companies/CC-00000001/edit" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/client-companies" class="action-edit" data-container="body" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <a href="http://jet-lighting.local/crm/clients/CC-00000001/edit" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/clients" class="action-edit" data-container="body" data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <span class="fa fa-pencil"></span>
                                             </a>
 
-                                            <a href="javascript:void(0)" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/client-companies" class="action-delete" data-container="body" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <a href="javascript:void(0)" data-id="CC-00000001" data-url="http://jet-lighting.local/crm/clients" class="action-delete" data-container="body" data-toggle="tooltip" data-placement="top" title="Delete">
                                                 <span class="fa fa-times"></span>
                                             </a>
                                         </td>

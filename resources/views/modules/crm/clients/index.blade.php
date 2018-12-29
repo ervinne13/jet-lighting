@@ -16,7 +16,15 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h3>Client Companies</h3>
+                    <h3> Client/Lead Management
+                        <div class="pull-right">
+                            <a href="{{ route('clients.create') }}" class="btn btn-primary btn-sm" type="button">
+                                <i class="fa fa-plus"></i>
+                                New Client / Lead
+                            </a>
+                        </div>
+                        <div class="clear-fix"></div>
+                    </h3>
                 </div>
                 <div class="ibox-content box-min-height">                    
                     {!! $dataTable->table(['class' => 'table table-hover']) !!}

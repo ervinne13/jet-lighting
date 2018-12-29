@@ -2,9 +2,10 @@
 
 namespace Jet\Domain\CRM\Service\Builder;
 
-use Jet\Domain\CRM\Entity\ClientCompany;
+use Jet\Domain\CRM\Entity\Client;
+use Jet\Domain\CRM\Entity\Quotation;
 
-class ClientCompanyBuilder
+class QuotationBuilder
 {
     private $name;
     private $address;
@@ -55,27 +56,27 @@ class ClientCompanyBuilder
         return $this;
     }
 
-    public function withClientCompany(ClientCompany $clientCompany)
+    public function withclient(Client $client)
     {
-        $this->name             = $clientCompany->getName();
-        $this->address          = $clientCompany->getAddress();
-        $this->contactPerson    = $clientCompany->getContactPerson();
-        $this->contactNumber    = $clientCompany->getContactNumber();
-        $this->emailAddress     = $clientCompany->getEmailAddress();
+        $this->name             = $client->getName();
+        $this->address          = $client->getAddress();
+        $this->contactPerson    = $client->getContactPerson();
+        $this->contactNumber    = $client->getContactNumber();
+        $this->emailAddress     = $client->getEmailAddress();
 
-        $this->refClientTrackingNumber = $clientCompany->getDocumentNumber();
+        $this->refClientTrackingNumber = $client->getDocumentNumber();
 
         return $this;
     }
 
-    public function build() : ClientCompany
+    public function build() : Quotation
     {
-        return new ClientCompany(
+        return new Quotation(new Client(
             $this->name,
             $this->address,
             $this->contactPerson,
             $this->contactNumber,
             $this->emailAddress
-        );
+        ));
     }
 }

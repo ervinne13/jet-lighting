@@ -22,7 +22,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="form-fields-container">
-                        @include('modules.crm.client-companies.fields')
+                        @include('modules.crm.clients.fields')
                     </div>
                 </div>
                 <div class="ibox-footer">

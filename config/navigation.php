@@ -24,9 +24,9 @@ return [
         'children'      => [
             [                
                 'icon_class'    => 'fa fa-users', 
-                'text'          => 'Client Companies',
-                'module'        => 'CC',
-                'route'         => 'client-companies.index'
+                'text'          => 'Client/Lead Management',
+                'module'        => 'C',
+                'route'         => 'clients.index'
             ],
             [                
                 'icon_class'    => 'fa fa-address-card', 
@@ -44,7 +44,7 @@ return [
                 'icon_class'    => 'fa fa-list', 
                 'text'          => 'Item Management',
                 'module'        => 'I',
-                'route'         => 'client-companies.index'
+                'route'         => 'clients.index'
             ],
         ]
     ],
