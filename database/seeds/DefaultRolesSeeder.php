@@ -50,7 +50,7 @@ class DefaultRolesSeeder extends Seeder
         $gm = new Role('General Manager');
         EntityManager::persist($gm);
         $this->persistACL($gm, [
-            ['CC', AccessControl::MANAGER],
+            ['C', AccessControl::MANAGER],
             ['I', AccessControl::MANAGER],
             ['TN', AccessControl::MANAGER],
             ['CQ', AccessControl::MANAGER],
@@ -66,6 +66,7 @@ class DefaultRolesSeeder extends Seeder
         $csr = new Role('CSR Officer');
         EntityManager::persist($csr);
         $this->persistACL($csr, [
+            ['C', AccessControl::MANAGER],
             ['CQ', AccessControl::AUTHOR],
             ['RQ', AccessControl::AUTHOR],
             ['PO', AccessControl::AUTHOR],
@@ -79,6 +80,7 @@ class DefaultRolesSeeder extends Seeder
         $sales = new Role('Sales Officer');
         EntityManager::persist($sales);
         $this->persistACL($sales, [
+            ['C', AccessControl::MANAGER],
             ['RQ', AccessControl::AUTHOR],
             ['PO', AccessControl::AUTHOR],
         ]);

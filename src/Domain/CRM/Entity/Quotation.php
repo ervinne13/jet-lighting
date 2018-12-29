@@ -3,6 +3,7 @@
 namespace Jet\Domain\CRM\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
+use Jet\Domain\CRM\Entity\Client;
 use Jet\Domain\Common\Entity\Specification\HasDocumentNumber;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 
@@ -45,15 +46,15 @@ class Quotation
      */
     private $refClientTrackingNumber;
 
-    public function __construct(ClientCompany $clientCompany) 
+    public function __construct(Client $client) 
     {
-        $this->name             = $clientCompany->getName();
-        $this->address          = $clientCompany->getAddress();
-        $this->contactPerson    = $clientCompany->getContactPerson();
-        $this->contactNumber    = $clientCompany->getContactNumber();
-        $this->emailAddress     = $clientCompany->getEmailAddress();
+        $this->name             = $client->getName();
+        $this->address          = $client->getAddress();
+        $this->contactPerson    = $client->getContactPerson();
+        $this->contactNumber    = $client->getContactNumber();
+        $this->emailAddress     = $client->getEmailAddress();
 
-        $this->refClientTrackingNumber = $clientCompany->getDocumentNumber();
+        $this->refClientTrackingNumber = $client->getDocumentNumber();
     }
 
     public function getName() : string

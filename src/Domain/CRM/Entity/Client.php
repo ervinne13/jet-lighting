@@ -9,12 +9,12 @@ use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="client_companies")
+ * @ORM\Table(name="clients")
  */
-class ClientCompany extends Company
+class Client extends Company
 {
     use Timestamps;
     use HasDocumentNumber;
 
-    protected $moduleCode = 'CC';
+    protected $moduleCode = 'C';
 }

@@ -2,7 +2,7 @@
 
 namespace Jet\Domain\Common\Service\Builder;
 
-use Jet\Domain\CRM\Entity\ClientCompany;
+use Jet\Domain\CRM\Entity\Client;
 use Jet\Domain\PLD\Entity\Supplier;
 
 class CompanyBasedEntityBuilder
@@ -48,9 +48,9 @@ class CompanyBasedEntityBuilder
         return $this;
     }
 
-    public function buildClientCompany() : ClientCompany
+    public function buildClientCompany() : Client
     {
-        return new ClientCompany(
+        return new Client(
             $this->name,
             $this->address,
             $this->contactPerson,

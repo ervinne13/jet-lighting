@@ -22,7 +22,7 @@ class QuotationsDataTable extends DataTable
             ->addColumn('action', function($model) {
                 return view('lib.datatable.static-actions', [
                     'id'    => $model->document_number,
-                    'route' => '/crm/client-companies'
+                    'route' => '/crm/quotations'
                 ]);
             })
             ->rawColumns(['is_active', 'action']);
@@ -74,6 +74,6 @@ class QuotationsDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'ClientCompanies_' . date('YmdHis');
+        return 'Quotations_' . date('YmdHis');
     }
 }
