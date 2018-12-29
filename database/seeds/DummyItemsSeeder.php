@@ -41,8 +41,8 @@ class DummyItemsSeeder extends Seeder
     private function makeLedWrapAround()
     {
         $costs = [
-            new SupplierCost($this->supplierRepo->find('S-00000002'), new Amount(350.00)),
-            new SupplierCost($this->supplierRepo->find('S-00000004'), new Amount(349.00))
+            new SupplierCost($this->supplierRepo->find('S-00002'), new Amount(350.00)),
+            new SupplierCost($this->supplierRepo->find('S-00004'), new Amount(349.00))
         ];
         
         $ledWrapAround = new Item(

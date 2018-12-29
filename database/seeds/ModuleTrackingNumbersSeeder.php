@@ -29,14 +29,25 @@ class ModuleTrackingNumbersSeeder extends Seeder
     public function run()
     {
         $moduleCodes = [
-            'C', 'S', 'ISI', 'CQ', 'RQ','PO', 'SI'
+            'C' => null,
+            'S' => null, 
+            'ISI' => 'ISI', 
+            'CQ' => 'VTO',             
+            'PO' => 'PO', 
+            'SI' => 'SI'
         ];
 
         $builder = new TrackingNumberBuilder();
 
-        foreach($moduleCodes as $code) {
-            $tn = $builder->withCode($code)->build();            
-            $tn->setModule($this->moduleRepository->findByCode(ModuleCode::fromString($code)));
+        foreach($moduleCodes as $moduleCode => $yearlyResettingTrackingNumberCode) {
+            if ($yearlyResettingTrackingNumberCode) {
+                $builder->withCode($yearlyResettingTrackingNumberCode)->resetsEveryYear();
+            } else {
+                $builder->withCode($moduleCode);
+            }
+
+            $tn = $builder->build();            
+            $tn->setModule($this->moduleRepository->findByCode(ModuleCode::fromString($moduleCode)));
 
             $this->em->persist($tn);
         }

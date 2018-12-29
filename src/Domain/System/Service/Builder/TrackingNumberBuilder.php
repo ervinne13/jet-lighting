@@ -8,7 +8,7 @@ class TrackingNumberBuilder
 {
     private $code;    
     private $startingNumber = 0;
-    private $endingNumber = 99999999;    
+    private $endingNumber = 99999;    
     private $isActive = true;
     private $resetsEveryYear = false;
 
