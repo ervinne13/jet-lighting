@@ -20,6 +20,7 @@ class CreateTrackingNumbersTable extends Migration
             $table->integer('starting_number')->default(0)->unsigned();
             $table->integer('ending_number')->default(99999999)->unsigned();
             $table->integer('current_number')->default(0)->unsigned();
+            $table->boolean('is_reseting_every_year')->default(false);
             $table->timestamps();
 
             $table->foreign('module_code')->references('code')->on('modules');

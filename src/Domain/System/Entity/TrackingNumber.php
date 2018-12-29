@@ -43,6 +43,11 @@ class TrackingNumber
     private $endingNumber;
 
     /**
+     * @ORM\Column(type="boolean", name="is_reseting_every_year")
+     */
+    private $resetsEachYear;
+
+    /**
      * @ORM\Column(type="integer", name="current_number")
      */
     private $currentNumber;
@@ -51,9 +56,11 @@ class TrackingNumber
         string $code, 
         int $startingNumber = 0, 
         int $endingNumber = 99999999, 
+        bool $resetsEachYear = false,
         bool $isActive = true
     ) {
         $this->code             = $code;
+        $this->resetsEachYear   = $resetsEachYear;
         $this->isActive         = $isActive;
         $this->startingNumber   = $startingNumber;
         $this->endingNumber     = $endingNumber;
@@ -70,7 +77,13 @@ class TrackingNumber
         }
 
         $paddedStringNumber = str_pad((string) $nextNumericNumber, $endingNumberSize, '0', STR_PAD_LEFT);
-        return "{$this->getCode()}-$paddedStringNumber";
+        $generatedNumber = "{$this->getCode()}-$paddedStringNumber";
+
+        if ($this->resetsEachYear) {
+            $generatedNumber = date('y') . "-{$generatedNumber}";
+        }
+
+        return $generatedNumber;
     }    
 
     public function commit() : string
