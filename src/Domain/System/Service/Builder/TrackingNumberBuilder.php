@@ -10,6 +10,7 @@ class TrackingNumberBuilder
     private $startingNumber = 0;
     private $endingNumber = 99999999;    
     private $isActive = true;
+    private $resetsEveryYear = false;
 
     public function withCode(string $code)
     {
@@ -35,12 +36,19 @@ class TrackingNumberBuilder
         return $this;
     }
 
+    public function resetsEveryYear(bool $resetsEveryYear = true)
+    {
+        $this->resetsEveryYear = $resetsEveryYear;
+        return $this;
+    }
+
     public function build() : TrackingNumber
     {
         return new TrackingNumber(
             $this->code,
             $this->startingNumber,
             $this->endingNumber,
+            $this->resetsEveryYear,
             $this->isActive
         );
     }
