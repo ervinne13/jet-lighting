@@ -1,5 +1,5 @@
 <script id="tmpl-detail-form" type="text/template">
-    <div class="form-row row">
+    <div class="form-row row animated fadeInDown">
         <div class="col-lg-6">
             <div class="form-group">
                 <label>Item <span class="selected-item-data-container text-navy" data-item-field="code" data-item-field-format=" (:code)"></span></label>

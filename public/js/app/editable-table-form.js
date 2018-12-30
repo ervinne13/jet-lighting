@@ -83,7 +83,7 @@ class EditableTableForm {
         if (this.saveMode === 'store') {
             $(this.createFormContainerSelector).html(view);
         } else if (this.saveMode === 'update') {
-            let wrapedView = `<tr class="update-form-row form-row"><td colspan="${this.parentColumnRowSpan}">${view}</td></tr>`;
+            let wrapedView = `<tr class="update-form-row form-row animated fadeInDown"><td colspan="${this.parentColumnRowSpan}">${view}</td></tr>`;
             let selectedRowSel = this.parentTable.getRowSelectorFromData(data)
 
             $(selectedRowSel).after(wrapedView);
