@@ -16,6 +16,8 @@ class EditableTable {
         this.addedRows = [];
         this.updatedRows = [];        
 
+        this.rowSpan = 1;
+
         this.autoRefreshTableOnChange = true;
 
         this.detailForm = null;
@@ -33,8 +35,12 @@ class EditableTable {
         $(document).on('click', '[action=edit-row]', function() {
             currentInstance.refreshRowsView();
             let id = $(this).data('id');
-            $(`tr[data-id="${id}"]`).addClass('selected');
-            currentInstance.detailForm.edit(currentInstance.getRowDataWithId(id));
+            let rowData = currentInstance.getRowDataWithId(id);
+
+            let rowSel = currentInstance.getRowSelectorFromData(rowData);
+
+            $(rowSel).addClass('selected');
+            currentInstance.detailForm.edit(rowData);
         });
 
         $(document).on('click', '[action=delete-row]', function() {
@@ -44,6 +50,10 @@ class EditableTable {
     }
 
     setDetailForm(detailForm) {
+        if ( !(detailForm && detailForm instanceof EditableTableForm)) {
+            throw "Detail form must implement EditableTableForm";
+        }
+
         this.detailForm = detailForm;        
         this.detailForm.setOnSaveListener((saveMode, data) => {
             if (saveMode == 'store') {
@@ -54,11 +64,17 @@ class EditableTable {
                 this.updateRow(data);
             }
         });
+
+        this.detailForm.setParentTable(this);
     }
 
     setAutoRefreshTableOnChange(autoRefreshTableOnChange) {
         this.autoRefreshTableOnChange = autoRefreshTableOnChange;
     };
+
+    setRowSpan(rowSpan) {
+        this.rowSpan = rowSpan;
+    }
 
     /**
      * Sets which function is resposible for rendering rows when they need to
@@ -111,10 +127,24 @@ class EditableTable {
             throw "Row already exists";
         }
 
-        row = this.assignRowDataDefaults(row);
+        row = this.assignRowDataDefaults(row, key);
 
         this.rowMap[key] = row;
         this.addedRows[key] = row;
+
+        this.refreshRowsView();
+    }   
+
+    updateRow(row) {
+        let key = this.getIdFromRow(row);
+        if ((!key in this.rowMap)) {
+            throw "Row does not exists";
+        }
+
+        row = this.assignRowDataDefaults(row, key);
+
+        this.rowMap[key] = row;
+        this.updatedRows[key] = row;
 
         this.refreshRowsView();
     }
@@ -135,22 +165,6 @@ class EditableTable {
         return row;
     }
 
-    updateRow(row) {
-        let key = this.getIdFromRow(row);
-        if ((!key in this.rowMap)) {
-            throw "Row does not exists";
-        }
-
-        row = this.assignRowDataDefaults(row);
-
-        this.rowMap[key] = row;
-        this.updatedRows[key] = row;
-
-        console.log(row);
-
-        this.refreshRowsView();
-    }
-
     removeRow(id) {
         this.deletedRows.push(this.rowMap[id]);
         delete this.rowMap[id];
@@ -166,6 +180,11 @@ class EditableTable {
             let viewData = this.rowMap[code];            
             $(this.rowsContainerSel).append(this.rowRenderer(viewData));
         }
+    }
+
+    getRowSelectorFromData(data) {
+        let id = this.getIdFromRow(data);
+        return `tr[data-id="${id}"]`;
     }
 
     //  ==============================================================

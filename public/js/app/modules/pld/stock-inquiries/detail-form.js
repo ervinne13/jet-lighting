@@ -14,8 +14,8 @@ class DetailForm extends EditableTableForm {
         return 'tmpl-detail-form';
     }
 
-    display(data) {        
-        $('#detail-rows-container').append(tmpl(DetailForm.templateId, data));
+    getDisplayView(data) {
+        return tmpl(DetailForm.templateId, data);        
     }
 
     getBlankData() {
@@ -33,7 +33,7 @@ class DetailForm extends EditableTableForm {
         let data = super.getFormData();
 
         let itemCode = $('[name=item_code]').val();
-        let supplierId = $('[name=supplier_id]').val();
+        let supplierId = $('[name=supplier_id]').val();        
         data.item = itemCode ? ItemSelection.getItemByCode(itemCode) : null;
         data.supplier = supplierId ? this.supplierMap[supplierId] : null;
 

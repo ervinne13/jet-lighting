@@ -13,8 +13,12 @@ let DetailTableBuilder = (function() {
             return row.item.code;
         };
 
-        detailTable = new EditableTable('#detail-rows-container', rowRenderer, rowIdFetcher);    
-        detailTable.setDetailForm(new DetailForm(suppliers));
+        let detailForm = new DetailForm(suppliers);
+        detailForm.setCreateFormContainerSelector('.create-detail-form-container');        
+
+        let detailTable = new EditableTable('#detail-rows-container', rowRenderer, rowIdFetcher);
+        detailTable.setRowSpan(6);
+        detailTable.setDetailForm(detailForm);
         return detailTable;
     }
 

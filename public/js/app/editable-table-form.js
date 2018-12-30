@@ -7,8 +7,8 @@ class EditableTableForm {
             throw new TypeError('Abstract class "EditableTableForm" cannot be instantiated directly.'); 
         }
 
-        if (typeof this.display !== 'function') {
-            throw new TypeError('The display function must be implemented');
+        if (typeof this.getDisplayView !== 'function') {
+            throw new TypeError('The getDisplayView function must be implemented');
         }
 
         if (typeof this.getBlankData !== 'function') {
@@ -17,6 +17,10 @@ class EditableTableForm {
         
         this.onSaveListener = null;
         this.saveMode = null;
+
+        this.parentTable = null;
+        this.parentColumnRowSpan = 1;
+        this.createFormContainerSelector = '.create-detail-form-container';        
 
         this.initEvents();
     }
@@ -41,6 +45,19 @@ class EditableTableForm {
         this.onSaveListener = onSaveListener;
     }
 
+    setCreateFormContainerSelector(createFormContainerSelector) {
+        this.createFormContainerSelector = createFormContainerSelector;
+    }
+
+    setParentTable(parentTable) {
+        if (!(parentTable && parentTable instanceof EditableTable)) {
+            throw "Parent table must be an instance of EditableTable";
+        }
+
+        this.parentTable = parentTable;
+        this.parentColumnRowSpan = this.parentTable.rowSpan;
+    }
+
     view(data) {
         this.saveMode = null;
         this.display(data);
@@ -57,7 +74,20 @@ class EditableTableForm {
     }
 
     close() {
-        $('tr.form-row').remove();
+        $(this.createFormContainerSelector).html('');
+        $('.update-form-row').remove();
+    }
+
+    display(data) {
+        let view = this.getDisplayView(data);
+        if (this.saveMode === 'store') {
+            $(this.createFormContainerSelector).html(view);
+        } else if (this.saveMode === 'update') {
+            let wrapedView = `<tr class="update-form-row"><td colspan="${this.parentColumnRowSpan}">${view}</td></tr>`;
+            let selectedRowSel = this.parentTable.getRowSelectorFromData(data)
+
+            $(selectedRowSel).after(wrapedView);
+        }
     }
 
     getFormData(baseData) {

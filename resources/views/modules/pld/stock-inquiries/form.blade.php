@@ -17,7 +17,12 @@
 $(document).ready(function() {
     ItemSelection.init(@json($items));
     // DetailForm.init(@json($suppliers), ItemSelection);
-    FormPage.init(@json($inquiry), DetailTableBuilder.withSuppliers(@json($suppliers)).build());
+    FormPage.init(
+        @json($inquiry), 
+        DetailTableBuilder
+            .withSuppliers(@json($suppliers))
+            .build()
+    );
 });
 </script>
 @append
