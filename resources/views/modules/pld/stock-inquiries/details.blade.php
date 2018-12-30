@@ -16,6 +16,7 @@
     <tfoot>
         <tr>
             <td colspan="6">
+                <div class="create-detail-form-container"></div>
                 <div class="text-center">
                     <button action="create-row" class="btn btn-info btn-rounded btn-sm">
                         <i class="fa fa-plus"></i> Create Inquiry Item
