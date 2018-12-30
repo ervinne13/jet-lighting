@@ -69,22 +69,38 @@ class TrackingNumber
 
     public function getNextAvailableStringVal() : string
     {
-        $endingNumberSize = strlen((string) $this->getEndingNumber());
         $nextNumericNumber = $this->getCurrentNumber() + 1;
+        $this->validateNumberDoesNotExceedEndingNumber($nextNumericNumber);
+        $generatedNumber = $this->generateCodeFromNumber($nextNumericNumber);
+        return $this->prependYearIfThisResetsEachYear($generatedNumber);
+    }        
 
-        if ($nextNumericNumber > $this->getEndingNumber()) {
+    private function validateNumberDoesNotExceedEndingNumber(int $number)
+    {
+        if ($number > $this->getEndingNumber()) {
             throw TrackingNumberGenerationFailedException::fromExhaustedNumbers($this);
         }
+    }
 
-        $paddedStringNumber = str_pad((string) $nextNumericNumber, $endingNumberSize, '0', STR_PAD_LEFT);
+    private function generateCodeFromNumber(int $number)
+    {
+        $paddingSize = strlen((string) $this->getEndingNumber());
+
+        //  ex. number = 102, padding size = 5, generates 00102
+        $paddedStringNumber = str_pad((string) $number, $paddingSize, '0', STR_PAD_LEFT);
         $generatedNumber = "{$this->getCode()}-$paddedStringNumber";
 
+        return $generatedNumber;
+    }
+
+    private function prependYearIfThisResetsEachYear(string $generatedNumber)
+    {
         if ($this->resetsEachYear) {
             $generatedNumber = date('y') . "-{$generatedNumber}";
         }
 
         return $generatedNumber;
-    }    
+    }
 
     public function commit() : string
     {

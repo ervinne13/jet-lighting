@@ -21,7 +21,7 @@ class ReservationAndCommitmentUnitTest extends TestCase
             ->build();
 
         $nextNumber = $tn->getNextAvailableStringVal();
-        $this->assertEquals('SI-00000001', $nextNumber);
+        $this->assertEquals('SI-00001', $nextNumber);
     }
 
     /**
