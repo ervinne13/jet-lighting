@@ -16,8 +16,8 @@
 <script type="text/javascript">
 $(document).ready(function() {
     ItemSelection.init(@json($items));
-    DetailForm.init(@json($suppliers), ItemSelection);
-    FormPage.init(@json($inquiry), DetailTableBuilder.build(), DetailForm);
+    // DetailForm.init(@json($suppliers), ItemSelection);
+    FormPage.init(@json($inquiry), DetailTableBuilder.withSuppliers(@json($suppliers)).build());
 });
 </script>
 @append

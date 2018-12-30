@@ -18,4 +18,11 @@ class Supplier extends Company
     
     protected $moduleCode = 'S';
 
+    public function jsonSerialize() 
+    {
+        $serialized = parent::jsonSerialize();
+        $serialized['id'] = $this->id;
+        return $serialized;
+    }
+
 }

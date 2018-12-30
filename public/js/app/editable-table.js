@@ -14,9 +14,47 @@ class EditableTable {
         this.rowMap = [];
         this.deletedRows = [];
         this.addedRows = [];
-        this.updatedRows = [];
-        
+        this.updatedRows = [];        
+
         this.autoRefreshTableOnChange = true;
+
+        this.detailForm = null;
+
+        this.initEvents();
+    }
+
+    initEvents() {
+        let currentInstance = this;
+        $(document).on('click', '[action=create-row]', function() {
+            currentInstance.refreshRowsView();
+            currentInstance.detailForm.create();
+        });
+
+        $(document).on('click', '[action=edit-row]', function() {
+            currentInstance.refreshRowsView();
+            let id = $(this).data('id');
+            $(`tr[data-id="${id}"]`).addClass('selected');
+            currentInstance.detailForm.edit(currentInstance.getRowDataWithId(id));
+        });
+
+        $(document).on('click', '[action=delete-row]', function() {
+            let id = $(this).data('id');
+            currentInstance.removeRow(id);
+        });
+    }
+
+    setDetailFormClass(DetailFormClass, params) {
+        this.detailForm = new DetailFormClass(...params);
+
+        this.detailForm.setOnSaveListener(function(saveMode, data) {            
+            if (saveMode == 'store') {
+                this.addRow(data);
+            }
+    
+            if (saveMode == 'update') {
+                this.updateRow(data);
+            }
+        });
     }
 
     setAutoRefreshTableOnChange(autoRefreshTableOnChange) {
@@ -61,6 +99,7 @@ class EditableTable {
         rows.forEach(row => {
             //  we won't use addRow as we don't want the addedRows data filled yet
             let key = this.getIdFromRow(row);
+            row = this.assignRowDataDefaults(row, key);
             this.rowMap[key] = row;
         });
 
@@ -73,12 +112,26 @@ class EditableTable {
             throw "Row already exists";
         }
 
+        row = this.assignRowDataDefaults(row);        
+
+        this.rowMap[key] = row;
+        this.addedRows[key] = row;
+    }
+
+    assignRowDataDefaults(row, key) {
         //  make sure that the identifier is provided in the id key
         //  some row data may not use "id" as the identifier row
         row.id = key;
 
-        this.rowMap[key] = row;
-        this.addedRows[key] = row;
+        if (row.editable === undefined) {
+            row.editable = true;
+        }
+
+        if (row.deletable === undefined) {
+            row.deletable = true;
+        }
+
+        return row;
     }
 
     updateRow(row) {

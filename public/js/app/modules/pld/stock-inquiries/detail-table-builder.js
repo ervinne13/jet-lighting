@@ -11,7 +11,14 @@ let DetailTableBuilder = (function() {
             return row.item.code;
         };
 
-        return new EditableTable('#detail-rows-container', rowRenderer, rowIdFetcher);    
+        detailTable = new EditableTable('#detail-rows-container', rowRenderer, rowIdFetcher);    
+        detailTable.setDetailFormClass(DetailForm, [this.suppliers]);
+        return detailTable;
+    }
+
+    function withSuppliers(suppliers) {
+        this.suppliers = suppliers;
+        return this;
     }
 
     function getRowBadgeClass(row) {
@@ -22,6 +29,6 @@ let DetailTableBuilder = (function() {
         return 'badge-primary';
     }
 
-    return { build };
+    return { withSuppliers, build };
 
 })();
