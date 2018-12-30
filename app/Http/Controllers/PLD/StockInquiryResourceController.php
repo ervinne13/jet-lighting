@@ -143,7 +143,7 @@ class StockInquiryResourceController extends Controller
         $item4 = $itemRepo->findByCode('JML-303-12V');        
         $item5 = $itemRepo->findByCode('JET5050WW/60/OUT');
 
-        $supplier = $supplierRepo->find('S-00000002');
+        $supplier = $supplierRepo->find('S-00002');
 
         $isi = new StockInquiry('test purpose');    
 

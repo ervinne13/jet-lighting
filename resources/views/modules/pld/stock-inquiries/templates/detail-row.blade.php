@@ -12,7 +12,7 @@
             <div class="badge {%= o.badgeClass %}">{%= o.status %}</div>
         </td>
         <td>
-            @include('templates.blueimp-editable-row')
+            @include('templates.blueimp-editable-row-actions')
         </td>
     </tr>
 </script>

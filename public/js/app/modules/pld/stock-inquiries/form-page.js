@@ -2,28 +2,25 @@
 let FormPage = (function() {
 
     let inquiry;
-    let DetailForm;
-    let DetailTable;
+    let detailForm;
+    let detailTable;
 
-    function init(inquiryRef, DetailTableRef, DetailFormRef) {
+    function init(inquiryRef, detailTableRef, detailFormRef) {
         inquiry = inquiryRef;
-        DetailForm = DetailFormRef;
-        DetailTable = DetailTableRef;
+        detailForm = detailFormRef;
+        detailTable = detailTableRef;
 
-        DetailTable.setRows(inquiry.details);
-        DetailTable.refreshRowsView();
+        detailTable.setRows(inquiry.details);
 
-        DetailForm.setOnSaveListener(function(saveMode, data) {
+        detailForm.setOnSaveListener(function(saveMode, data) {
             console.log('data', data);
             if (saveMode == 'store') {
-                DetailTable.addRow(data);
+                detailTable.addRow(data);
             }
 
             if (saveMode == 'update') {
-                DetailTable.updateRow(data);
+                detailTable.updateRow(data);
             }
-
-            DetailTable.refreshRowsView();
         });
 
         initEvents();
@@ -32,34 +29,33 @@ let FormPage = (function() {
     function initEvents() {
         //  TODO: move this to detail table
         $(document).on('click', '[action=create-row]', function() {
-            DetailTable.refreshRowsView();
-            DetailForm.create();
+            detailTable.refreshRowsView();
+            detailForm.create();
         });
 
         $(document).on('click', '[action=view-row]', function() {
-            DetailTable.refreshRowsView();
+            detailTable.refreshRowsView();
             let id = $(this).data('id');
             $(`tr[data-id="${id}"]`).addClass('selected');
-            DetailForm.view(DetailTable.getRowData(id));
+            detailForm.view(detailTable.getRowData(id));
         });
 
         $(document).on('click', '[action=edit-row]', function() {
-            DetailTable.refreshRowsView();
+            detailTable.refreshRowsView();
             let id = $(this).data('id');
             $(`tr[data-id="${id}"]`).addClass('selected');
-            DetailForm.edit(DetailTable.getRowData(id));
+            detailForm.edit(detailTable.getRowData(id));
         });
 
         $(document).on('click', '[action=delete-row]', function() {
             let id = $(this).data('id');
-            DetailTable.removeRow(id);
-            DetailTable.refreshRowsView();
+            detailTable.removeRow(id);
         });
 
         $(document).on('click', '[action=save]', function() {
-            DetailTable.refreshRowsView();
+            detailTable.refreshRowsView();
             inquiry.purpose = $('[name=inquiry]').val();
-            inquiry.detailUpdates = DetailTable.getTableData();
+            inquiry.detailUpdates = detailTable.getTableData();
         });
     }
 

@@ -3,19 +3,21 @@
 @include('lib.vendor.sweetalert')
 @include('lib.vendor.blueimp-tmpl')
 
+@include('lib.item-selector')
+@include('lib.editable-table')
+
 @section('title', 'Inquire Item Stocks')
 
 @section('js')
-<script src="{!! asset('js/app/item-selection.js') !!}" type="text/javascript"></script>
 <script src="{!! asset('js/app/modules/pld/stock-inquiries/detail-form.js') !!}" type="text/javascript"></script>
-<script src="{!! asset('js/app/modules/pld/stock-inquiries/detail-table.js') !!}" type="text/javascript"></script>
+<script src="{!! asset('js/app/modules/pld/stock-inquiries/detail-table-builder.js') !!}" type="text/javascript"></script>
 <script src="{!! asset('js/app/modules/pld/stock-inquiries/form-page.js') !!}" type="text/javascript"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
     ItemSelection.init(@json($items));
     DetailForm.init(@json($suppliers), ItemSelection);
-    FormPage.init(@json($inquiry), DetailTable, DetailForm);
+    FormPage.init(@json($inquiry), DetailTableBuilder.build(), DetailForm);
 });
 </script>
 @append
