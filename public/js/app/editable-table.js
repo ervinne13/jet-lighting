@@ -43,10 +43,9 @@ class EditableTable {
         });
     }
 
-    setDetailFormClass(DetailFormClass, params) {
-        this.detailForm = new DetailFormClass(...params);
-
-        this.detailForm.setOnSaveListener(function(saveMode, data) {            
+    setDetailForm(detailForm) {
+        this.detailForm = detailForm;        
+        this.detailForm.setOnSaveListener((saveMode, data) => {
             if (saveMode == 'store') {
                 this.addRow(data);
             }
@@ -112,10 +111,12 @@ class EditableTable {
             throw "Row already exists";
         }
 
-        row = this.assignRowDataDefaults(row);        
+        row = this.assignRowDataDefaults(row);
 
         this.rowMap[key] = row;
         this.addedRows[key] = row;
+
+        this.refreshRowsView();
     }
 
     assignRowDataDefaults(row, key) {
@@ -135,17 +136,23 @@ class EditableTable {
     }
 
     updateRow(row) {
-        let key = getIdFromRow(row);
-        if ((!key in rowMap)) {
+        let key = this.getIdFromRow(row);
+        if ((!key in this.rowMap)) {
             throw "Row does not exists";
         }
 
+        row = this.assignRowDataDefaults(row);
+
         this.rowMap[key] = row;
         this.updatedRows[key] = row;
+
+        console.log(row);
+
+        this.refreshRowsView();
     }
 
     removeRow(id) {
-        this.deletedRows.push(rowMap[id]);
+        this.deletedRows.push(this.rowMap[id]);
         delete this.rowMap[id];
 
         this.refreshRowsView();

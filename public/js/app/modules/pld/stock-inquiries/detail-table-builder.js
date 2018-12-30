@@ -1,6 +1,8 @@
 
 let DetailTableBuilder = (function() {
 
+    let suppliers;
+
     function build() {
         let rowRenderer = (rowViewData) => {
             rowViewData.badgeClass = getRowBadgeClass(rowViewData);
@@ -12,13 +14,13 @@ let DetailTableBuilder = (function() {
         };
 
         detailTable = new EditableTable('#detail-rows-container', rowRenderer, rowIdFetcher);    
-        detailTable.setDetailFormClass(DetailForm, [this.suppliers]);
+        detailTable.setDetailForm(new DetailForm(suppliers));
         return detailTable;
     }
 
-    function withSuppliers(suppliers) {
-        this.suppliers = suppliers;
-        return this;
+    function withSuppliers(suppliersRef) {
+        suppliers = suppliersRef;
+        return DetailTableBuilder;
     }
 
     function getRowBadgeClass(row) {

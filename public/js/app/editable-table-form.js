@@ -22,13 +22,15 @@ class EditableTableForm {
     }
 
     initEvents() {
+        let currentInstance = this;
         $(document).on('click', '.detail-action[action=close-detail]', function() {
-            close();
+            currentInstance.close();
         });
 
         $(document).on('click', '.detail-action[action=save-detail]', function() {
-            if (onSaveListener) {                
-                onSaveListener(this.saveMode, getFormData());
+            if (currentInstance.onSaveListener) {                
+                currentInstance.onSaveListener(currentInstance.saveMode, currentInstance.getFormData());
+                currentInstance.close();
             } else {
                 throw "On Save Listener not set in an EditableTableForm instance.";
             }    
@@ -61,7 +63,7 @@ class EditableTableForm {
     getFormData(baseData) {
         let data = {};
         if (baseData === undefined) {
-            data = getBlankData();
+            data = this.getBlankData();
         }
 
         $(':input').each(function() {
