@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/node_modules
+/public/item-img
 /public/storage
 /storage/*.key
 /vendor

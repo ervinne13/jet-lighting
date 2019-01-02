@@ -43,6 +43,11 @@ class ItemCategory implements JsonSerializable
         $this->description = $description;
     }    
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     public function jsonSerialize()
     {
         return [

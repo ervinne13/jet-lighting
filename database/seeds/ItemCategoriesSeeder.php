@@ -22,7 +22,12 @@ class ItemCategoriesSeeder extends Seeder
     public function run()
     {
         $categories = [
-            'Louver Lighting',
+            'LED Recessed Lights',
+            'Downlight Fixtures',
+            'Mall Lighting',
+            'Surface Downlights',
+            'LED Bulbs & Lamps',
+            'Louver Lighting',            
             'Industrial Lighting',
             'Track Lights',
             'Wall Lighting',

@@ -38,6 +38,11 @@ class Item implements JsonSerializable
      * @ORM\Column(type="string")
      */
     private $name;
+    
+    /**
+     * @ORM\Column(type="string", name="image_url")
+     */
+    private $imageUrl;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -55,12 +60,13 @@ class Item implements JsonSerializable
     private $stockSummaries;
 
     public function __construct(
+        ItemCategory $category,
         string $code,
         string $name,
         string $description = null,
-        array $supplierCosts = [],
-        Size $size = null
+        array $supplierCosts = []        
     ) {
+        $this->category     = $category;
         $this->code         = $code;
         $this->name         = $name;
         $this->description  = $description;
@@ -70,9 +76,25 @@ class Item implements JsonSerializable
         }
     }
 
+    public function getCategory() : ItemCategory
+    {
+        return $this->category;
+    }
+
     public function getName() : string
     {
         return $this->name;
+    }
+
+    public function getImageUrl() : string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(string $imageUrl)
+    {
+        $this->imageUrl = $imageUrl;
+        return $this;
     }
 
     public function getDescription() : ?string
@@ -120,6 +142,7 @@ class Item implements JsonSerializable
         }
 
         return [
+            'category'          => $this->category,
             'code'              => $this->code,
             'name'              => $this->name,
             'description'       => $this->description,
@@ -128,5 +151,6 @@ class Item implements JsonSerializable
             //  TODO: make this locaiton based
             'onHandQty'         => $onHandQty
         ];
-    }
+    }    
+
 }
