@@ -5,6 +5,7 @@ namespace Jet\Domain\PLD\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 use Jet\Domain\Common\Entity\Company;
 use Jet\Domain\Common\Entity\Specification\HasMutableId;
+use Jet\Domain\PLD\Entity\ItemCategory;
 use Jet\Domain\PLD\Entity\SupplierCost;
 use Jet\Domain\PLD\Entity\SupplierItem;
 use Jet\Infrastructure\PLD\Entity\PersistentItem;
@@ -25,6 +26,13 @@ class Item implements JsonSerializable
      * @var string
      */
     protected $code;    
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ItemCategory", inversedBy="items")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @var ItemCategory
+     */
+    private $category;
 
     /**
      * @ORM\Column(type="string")
