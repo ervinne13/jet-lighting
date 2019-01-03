@@ -1,3 +1,23 @@
+Questions
+
+Items
+
+1. Since items in quotations do not have sizes in it, and many of the items have fixed
+sizes, is it safe to assume that 1 size = 1 item code?
+Ex. in the case of surface downlight: JET-LED SDL SQ 205 4.5 | 7 | 6"
+    - Should we have an item code for each? (if not, we might have to change the quotation 
+    details format you initially gave)
+    - If each have their own item code/name they will be:
+        JET-LED SDL SQ 205 4.5"
+        JET-LED SDL SQ 205 7"
+        JET-LED SDL SQ 205 6"
+    - Note, having separate item codes may be preferable as it will be easier for us to
+    tag the items and assign different prices for each sizes. This will also make it more
+    consistent with other items that don't have sizes.
+
+
+
+
 Apparent Modules From Flow
 
 Lead Handling
