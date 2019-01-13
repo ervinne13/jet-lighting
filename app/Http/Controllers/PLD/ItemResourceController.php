@@ -5,9 +5,19 @@ namespace App\Http\Controllers\PLD;
 use App\DataTables\PLD\ItemsDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Jet\Domain\PLD\Service\ItemRepository;
 
 class ItemResourceController extends Controller
 {
+
+    /** @var ItemRepository */
+    private $itemRepository;
+
+    public function __construct(ItemRepository $itemRepository)
+    {
+        $this->itemRepository = $itemRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -42,10 +52,10 @@ class ItemResourceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string $code
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($code)
     {
         //
     }
@@ -53,22 +63,25 @@ class ItemResourceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string $code
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($code)
     {
-        //
+        $item = $this->itemRepository->findByCode($code);
+        return view('modules.pld.items.form', [
+            'item' => $item,            
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string $code
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $code)
     {
         //
     }
@@ -76,10 +89,10 @@ class ItemResourceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string $code
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($code)
     {
         //
     }
