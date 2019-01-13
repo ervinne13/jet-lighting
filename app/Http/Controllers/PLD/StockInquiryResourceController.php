@@ -51,8 +51,7 @@ class StockInquiryResourceController extends Controller
      */
     public function create()
     {
-        $isi = $this->createDummyInquiry();
-        $commitedDocNo = $isi->commitAndPersist($this->em);
+        $isi = new StockInquiry();
 
         $items = $this->itemRepository->findAll();
         $suppliers = $this->supplierRepository->findAll();
