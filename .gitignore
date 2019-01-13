@@ -4,6 +4,7 @@
 /public/item-img
 /public/storage
 /storage/*.key
+/storage/proxies
 /vendor
 .env
 .phpunit.result.cache
