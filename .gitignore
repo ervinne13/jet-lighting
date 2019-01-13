@@ -1,8 +1,10 @@
 /node_modules
 /public/hot
 /public/node_modules
+/public/item-img
 /public/storage
 /storage/*.key
+/storage/proxies
 /vendor
 .env
 .phpunit.result.cache

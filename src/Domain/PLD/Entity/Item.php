@@ -5,6 +5,7 @@ namespace Jet\Domain\PLD\Entity;
 use Doctrine\ORM\Mapping AS ORM;
 use Jet\Domain\Common\Entity\Company;
 use Jet\Domain\Common\Entity\Specification\HasMutableId;
+use Jet\Domain\PLD\Entity\ItemCategory;
 use Jet\Domain\PLD\Entity\SupplierCost;
 use Jet\Domain\PLD\Entity\SupplierItem;
 use Jet\Infrastructure\PLD\Entity\PersistentItem;
@@ -27,9 +28,21 @@ class Item implements JsonSerializable
     protected $code;    
 
     /**
+     * @ORM\ManyToOne(targetEntity="ItemCategory", inversedBy="items")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @var ItemCategory
+     */
+    private $category;
+
+    /**
      * @ORM\Column(type="string")
      */
     private $name;
+    
+    /**
+     * @ORM\Column(type="string", name="image_url")
+     */
+    private $imageUrl;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -47,12 +60,13 @@ class Item implements JsonSerializable
     private $stockSummaries;
 
     public function __construct(
+        ItemCategory $category,
         string $code,
         string $name,
         string $description = null,
-        array $supplierCosts = [],
-        Size $size = null
+        array $supplierCosts = []        
     ) {
+        $this->category     = $category;
         $this->code         = $code;
         $this->name         = $name;
         $this->description  = $description;
@@ -62,9 +76,25 @@ class Item implements JsonSerializable
         }
     }
 
+    public function getCategory() : ItemCategory
+    {
+        return $this->category;
+    }
+
     public function getName() : string
     {
         return $this->name;
+    }
+
+    public function getImageUrl() : string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(string $imageUrl)
+    {
+        $this->imageUrl = $imageUrl;
+        return $this;
     }
 
     public function getDescription() : ?string
@@ -112,6 +142,7 @@ class Item implements JsonSerializable
         }
 
         return [
+            'category'          => $this->category,
             'code'              => $this->code,
             'name'              => $this->name,
             'description'       => $this->description,
@@ -120,5 +151,6 @@ class Item implements JsonSerializable
             //  TODO: make this locaiton based
             'onHandQty'         => $onHandQty
         ];
-    }
+    }    
+
 }

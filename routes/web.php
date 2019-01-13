@@ -29,5 +29,6 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::group(['namespace' => 'PLD', 'prefix' => 'pld'], function() {
         Route::resource('stock-inquiries', 'StockInquiryResourceController');        
+        Route::resource('items', 'ItemResourceController');        
     });
 });

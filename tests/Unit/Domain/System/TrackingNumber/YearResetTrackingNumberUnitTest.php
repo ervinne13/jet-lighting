@@ -19,6 +19,6 @@ class YearResetTrackingNumberUnitTest extends TestCase
             ->build();
 
         $nextNumber = $tn->getNextAvailableStringVal();
-        $this->assertEquals('18-SI-00000001', $nextNumber);
+        $this->assertEquals('19-SI-00001', $nextNumber);
     }
 }

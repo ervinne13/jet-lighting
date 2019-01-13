@@ -44,7 +44,7 @@ return [
                 'icon_class'    => 'fa fa-list', 
                 'text'          => 'Item Management',
                 'module'        => 'I',
-                'route'         => 'clients.index'
+                'route'         => 'items.index'
             ],
         ]
     ],
